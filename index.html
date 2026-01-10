@@ -2627,33 +2627,37 @@ c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
       <div class="section content-section" id="synth">
         <h2>📋 Synthèse</h2>
         <!---->
-        <pre>
+        <p>
           Après avoir compromis la machine Windows, le hacker a obtenu des informations déterminantes 
           grâce à un enregistreur de frappes. Dans l'échange capturé, un salarié de l'entreprise précisait dans un document texte
-          la localisation d'un document hautement confidentiel sur une <q> machine Linux non reliée au réseau </q>.<br>
-        
+          la localisation d'un document hautement confidentiel sur une <q> machine Linux non reliée au réseau </q>.
+        </p>
+        <p>
           Le pirate a alors entrepris de scanner le réseau interne à l’aide de l’outil arp-scanner, afin d’identifier
           les hôtes actifs. L’objectif était d’envoyer des requêtes ARP et d’obtenir, pour chaque machine détectée,
-          son adresse IP et son adresse MAC. Ce scan a confirmé l'existence d'une machine sur un réseau différent.       </p>
-        </pre>
+          son adresse IP et son adresse MAC. Ce scan a confirmé l'existence d'une machine sur un réseau différent.       
+        </p>
+        
         <p>
           Pour accéder à cette machine le hacker a procédé comme suit:
-          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
-            <li><strong>Création d’une route</strong>: permettant d’accéder au réseau interne via la machine compromise, en
-            utilisant le module autoroute afin d’atteindre l’hôte caché.</li>
-            <li><strong>Mise en place d’un proxy</strong>: dredirigeant le trafic local (127.0.0.1) vers la machine interne, écoutant
-            par défaut sur le port 1080 de la machine attaquante.</li>
-            <li><strong>Utilisation de l'outil Proxychains</strong>: comme client avec Nmap, de manière à ce que tout le trafic TCP/UDP passe via 127.0.0.1:1080,
-            transite par la machine compromise, puis soit redirigé vers le réseau interne.</li>
-          </ul>
         </p>
-        <pre>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>Création d’une route</strong>: permettant d’accéder au réseau interne via la machine compromise, en
+          utilisant le module autoroute afin d’atteindre l’hôte caché.</li>
+          <li><strong>Mise en place d’un proxy</strong>: dredirigeant le trafic local (127.0.0.1) vers la machine interne, écoutant
+          par défaut sur le port 1080 de la machine attaquante.</li>
+          <li><strong>Utilisation de l'outil Proxychains</strong>: comme client avec Nmap, de manière à ce que tout le trafic TCP/UDP passe via 127.0.0.1:1080,
+          transite par la machine compromise, puis soit redirigé vers le réseau interne.</li>
+        </ul>
+        
+        <p>
           La première attaque brute force sur le serveur FTP de l’ordinateur caché échoua après près de 48
           heures d’exécution, jugée inefficace. Le hacker opta alors pour une seconde attaque par brute force
           ciblant cette fois un serveur Tomcat. Cependant, l’opération fut interrompue avant son démarrage,
           conduisant à vérifier l’accessibilité du port concerné. Un scan nmap révéla que le port 8180 avait le
           statut filtered, laissant supposer un filtrage ou un blocage par pare-feu.    
-        
+        </p>
+        <p>
           L’attaquant tenta alors une nouvelle approche : l’extraction des hachages de mots de passe de la
           machine Windows Server 2008 R2 Standard compromise, via le module smart_hashdump. L’objectif était
           d’appliquer la technique « pass the hash ». Cette méthode exploite une faiblesse 18 du protocole NTLM,
@@ -2661,29 +2665,32 @@ c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
           Le hacker utilisa le module windows/smb/psexec pour mettre en œuvre cette technique, mais
           échoua une nouvelle fois. Il se tourna alors vers un déchiffrement des hachages à l’aide de John
           the Ripper.
-
+        </p>
+        <p>
           Pour ce faire, il récupéra d’abord, via la commande creds, les identifiants trouvés et
           associés aux machines ciblées. L’analyse montra que trois entrées correspondaient à la machine cachée
           (192.168.100.3). Après avoir cassé les mots de passe, il constata que l’utilisateur vagrant était présent
           à la fois sur Windows 2008 (10.10.10.2) et sur la machine interne.
-
+        </p>
+        <p>
           Ce compte fut utilisé pour se connecter au bureau à distance à Windows 2008 ainsi qu’au serveur
           FTP interne. Depuis sa session Meterpreter, le pirate procéda comme suit:
-        </pre>
-          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
-            <li><strong>Activation du Bureau à distance</strong>: via le module enable_rdp.</li>
-            <li><strong>Connexion graphique à l'ordinateur Windows 2008</strong> en utilisant rdesktop 
-              depuis Kali Linux avec les identifiants vagrant</li>
-            <li><strong>Connexion au serveur FTP interne depuis l'interface graphique de l'ordinateur compromis</strong>
-              avec les même identifiants vagrant.</li>
-            <li><strong>Téléchargement du fichier cible</strong> situé dans /home/vagrant via la commande get.</li>
-            <li><strong>Lancement d’un shell depuis la session Meterpreter</strong>pour exécuter la commande download 
-              et télécharger le fichier sur la machine d’attaque.</li>
-            <li><strong>Vérification de la lisibilité du fichier cible avec cat directement dans la session Meterpreter</strong></li>
-          </ul>
+        </p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>Activation du Bureau à distance</strong>: via le module enable_rdp.</li>
+          <li><strong>Connexion graphique à l'ordinateur Windows 2008</strong> en utilisant rdesktop 
+            depuis Kali Linux avec les identifiants vagrant</li>
+          <li><strong>Connexion au serveur FTP interne depuis l'interface graphique de l'ordinateur compromis</strong>
+            avec les même identifiants vagrant.</li>
+          <li><strong>Téléchargement du fichier cible</strong> situé dans /home/vagrant via la commande get.</li>
+          <li><strong>Lancement d’un shell depuis la session Meterpreter</strong>pour exécuter la commande download 
+            et télécharger le fichier sur la machine d’attaque.</li>
+          <li><strong>Vérification de la lisibilité du fichier cible avec cat directement dans la session Meterpreter</strong></li>
+        </ul>
+        
         <h2>🎯 Conclusion</h2>
         <p>
-          Cette simulation met en évidence la complexité de la mise en place d’un laboratoire de pentesting
+            Cette simulation met en évidence la complexité de la mise en place d’un laboratoire de pentesting
           et les difficultés rencontrées dans ce type d’opération. Dans un contexte réel, un pirate n’exécuterait
           probablement pas ces actions manuellement: par souci de rapidité et pour réduire les risques de
           détection, il privilégierait l’emploi de scripts automatisés, adaptés aux résultats obtenus au fil des
