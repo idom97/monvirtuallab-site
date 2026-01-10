@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virtual Lab - Pentest avec Metasploit</title>
     <link rel="stylesheet" href="data:text/javascript;base64,aW1wb3J0ICcuL3N0eWxlLmNzcycKaW1wb3J0ICcuL215c2NyaXB0LmpzJwppbXBvcnQgamF2YXNjcmlwdExvZ28gZnJvbSAnLi9qYXZhc2NyaXB0LnN2ZycKaW1wb3J0IHZpdGVMb2dvIGZyb20gJy92aXRlLnN2ZycKaW1wb3J0IHsgc2V0dXBDb3VudGVyIH0gZnJvbSAnLi9jb3VudGVyLmpzJwoKZG9jdW1lbnQucXVlcnlTZWxlY3RvcignI2FwcCcpLmlubmVySFRNTCA9IGAKICA8ZGl2PgogICAgPGEgaHJlZj0iaHR0cHM6Ly92aXRlLmRldiIgdGFyZ2V0PSJfYmxhbmsiPgogICAgICA8aW1nIHNyYz0iJHt2aXRlTG9nb30iIGNsYXNzPSJsb2dvIiBhbHQ9IlZpdGUgbG9nbyIgLz4KICAgIDwvYT4KICAgIDxhIGhyZWY9Imh0dHBzOi8vZGV2ZWxvcGVyLm1vemlsbGEub3JnL2VuLVVTL2RvY3MvV2ViL0phdmFTY3JpcHQiIHRhcmdldD0iX2JsYW5rIj4KICAgICAgPGltZyBzcmM9IiR7amF2YXNjcmlwdExvZ299IiBjbGFzcz0ibG9nbyB2YW5pbGxhIiBhbHQ9IkphdmFTY3JpcHQgbG9nbyIgLz4KICAgIDwvYT4KICAgIDxoMT5IZWxsbyBWaXRlITwvaDE+CiAgICA8ZGl2IGNsYXNzPSJjYXJkIj4KICAgICAgPGJ1dHRvbiBpZD0iY291bnRlciIgdHlwZT0iYnV0dG9uIj48L2J1dHRvbj4KICAgIDwvZGl2PgogICAgPHAgY2xhc3M9InJlYWQtdGhlLWRvY3MiPgogICAgICBDbGljayBvbiB0aGUgVml0ZSBsb2dvIHRvIGxlYXJuIG1vcmUKICAgIDwvcD4KICA8L2Rpdj4KYAoKc2V0dXBDb3VudGVyKGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJyNjb3VudGVyJykpCg==" />
-    <script type="module" crossorigin src="/monvirtuallab-site/assets/index-RMNsD-0E.js"></script>
-    <link rel="stylesheet" crossorigin href="/monvirtuallab-site/assets/index-Da5iHCLm.css">
+    <script type="module" crossorigin src="/monvirtuallab-site/assets/index-Ch_r60pa.js"></script>
+    <link rel="stylesheet" crossorigin href="/monvirtuallab-site/assets/index-DDbO_nU8.css">
   </head>
   <body>
     <div class="header">
@@ -478,57 +478,57 @@ PS C:\Users\iDom\metasploitable3\ubuntu1404> vagrant up
           pour la communication avec Kali Linux et pfSense (IP dans le
           sous-réseau 10.10.10.0/24).
         </p>
-        <!--CE-->
-        <p>La configuration réseau de la machine virtuelle Windows Server
-           2008 a été réalisée en accédant au Centre Réseau et Partage depuis le menu Démarrer, puis en modifiant les paramètres IPv4 de
-           chaque adaptateur réseau.</p>
-        <p>Les adresses attribuées sont les suivantes :
-          <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
-            <li>Adaptateur LAN : 10.10.10.2/24 (passerelle 10.10.10.128)</li>
-            <li>Adaptateur WAN : 192.168.100.2/24</li>
-            <li>LAN : 10.10.10.2</li>
-            <li>WAN : 192.168.100.2</li>
-          </ul>
-        </p>
         <!--CE3-->
         <img src="/monvirtuallab-site/assets/CE3-CJP0-cga.png" width="800" />
         <figcaption>
-          Figure 11 – Centre Réseau et Partage sous Windows Server 2008
+          Figure 11 – Adaptateur 1 - Réseau privé hôte (Windows 2008)
         </figcaption>
         <!--CE4-->
         <img src="/monvirtuallab-site/assets/CE4-DEdzAPv_.png" width="800" />
         <figcaption>
-          Figure 12 – Propriétés de la connexion réseau - Adaptateur 1 (Réseau privé hôte)
+          Figure 12 – Adaptateur 2 - Réseau interne (Windows 2008)
         </figcaption>
+        <p>
+          La configuration réseau de la machine virtuelle Windows Server
+           2008 a été réalisée en accédant au Centre Réseau et Partage depuis le menu Démarrer, puis en modifiant les paramètres IPv4 de
+           chaque adaptateur réseau.
+        </p>
+        <p>Les adresses attribuées sont les suivantes:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li>Adaptateur LAN: 10.10.10.2/24 (passerelle 10.10.10.128)</li>
+          <li>Adaptateur WAN: 192.168.100.2/24</li>
+          <li>LAN: 10.10.10.2</li>
+          <li>WAN: 192.168.100.2</li>
+        </ul>
         <!--CE5-->
         <img src="/monvirtuallab-site/assets/CE5-CaBWjVRV.png" width="650" />
         <figcaption>
-          Figure 13 – Configuration IPv4 – Adaptateur 1 (10.10.10.2/24, passerelle 10.10.10.128)
+          Figure 13 – Centre Réseau et Partage sous Windows Server 2008
         </figcaption>
         <!--CE6-->
         <img src="/monvirtuallab-site/assets/CE6-DXTEPPDs.png" width="450" />
         <figcaption>
-          Figure 14 – Statut de la connexion — Adaptateur 1
+          Figure 14 – Statut de la connexion réseau — Adaptateur 1 (Réseau privé hôte)
         </figcaption>
         <!--CE7-->
         <img src="/monvirtuallab-site/assets/CE7-CnYHX_Ak.png" width="450" />
         <figcaption>
-          Figure 15 – Propriétés de la connexion réseau — Adaptateur 2 (Réseau interne)
+          Figure 15 – Propriétés de la connexion réseau - Adaptateur 1 (Réseau privé hôte)
         </figcaption>
         <!--CE8-->
         <img src="/monvirtuallab-site/assets/CE8-CNVTQoVO.png" width="450" />
         <figcaption>
-          Figure 15 – Configuration IPv4 — Adaptateur 2 (192.168.100.2/24)
+          Figure 15 – Configuration IPv4 — Adaptateur 1 (10.10.10.2/24, passerelle 10.10.10.128)
         </figcaption>
         <!--CE9-->
         <img src="/monvirtuallab-site/assets/CE9-DhFyj5ZZ.png" width="450" />
         <figcaption>
-          Figure 16 – Adaptateur réseau interne sur Ubuntu 14.04
+          Figure 16 – Statut de la connexion réseau - Adaptateur 2 (Réseau interne)
         </figcaption>
         <!--CE10-->
         <img src="/monvirtuallab-site/assets/CE10-B_qHcRbT.png" width="450" />
         <figcaption>
-          Figure 16 – Adaptateur réseau interne sur Ubuntu 14.04
+          Figure 16 – Configuration IPv4 — Adaptateur 2 (192.168.100.2/24)
         </figcaption>
         <h3>2. Ubuntu 14.04 : Machine cible ( réseau interne)</h3>
         <p>
@@ -587,15 +587,13 @@ netmask 255.255.255.0
           </figure>
         </div>
           
-                
-            
         <!--CE12-->
-        <img src="/monvirtuallab-site/assets/CE12-DPOLAJro.png" width="700" />
+        <img src="/monvirtuallab-site/assets/CE13-Ebx7r2AF.png" width="700" />
         <figcaption>
           Figure 18 – Connexion à la machine Ubuntu 14.04 et ouverture du fichier /etc/network/interfaces
         </figcaption>
         <!--CE13-->
-        <img src="/monvirtuallab-site/assets/CE13-Ebx7r2AF.png" width="700" />
+        <img src="/monvirtuallab-site/assets/CE12-DPOLAJro.png" width="700" />
         <figcaption>
           Figure 19 – Configuration IPv4 statique dans /etc/network/interfaces (192.168.100.3/24)
         </figcaption>
@@ -606,7 +604,17 @@ netmask 255.255.255.0
           1: VirtualBox Host-Only Ethernet Adapter), pour communiquer avec Windows Server 2008
           et pfSense (IP dans le sous-réseau 10.10.10.0/24).
         </p>
-        <!--CODE-->
+        <!--CE14-->
+        <img src="/monvirtuallab-site/assets/CE14-CU1qcilM.png" width="800" />
+        <figcaption>
+          Figure 20 – Interface réseau privée hôte sur Kali Linux
+        </figcaption>
+
+        <p>
+          Le paramétrage de l’adresse IP a été effectué directement depuis le terminal à l’aide de la
+          commande:
+        </p>
+        
         <!---CODE-->   
         <div class="center">
           <figure class="ray-code">
@@ -616,21 +624,10 @@ netmask 255.255.255.0
               <span class="dot green"></span>
               <span class="title">bash</span>
             </header>
-            <pre><code class="language-bash">$ sudo ip addr add 10.10.10.100/24 dev eth0
-            </code></pre>
+            <pre><code class="language-bash">$ sudo ip addr add 10.10.10.100/24 dev eth0</code></pre>
           </figure>
         </div>
-        <p>
-          Le paramétrage de l’adresse IP a été effectué directement depuis le terminal à l’aide de la
-          commande:
-        </p>
         
-        <!--CE14-->
-        <img src="/monvirtuallab-site/assets/CE14-CU1qcilM.png" width="800" />
-        <figcaption>
-          Figure 20 – Interface réseau privée hôte sur Kali Linux
-        </figcaption>
-
         <p>
           Cette configuration permet à Kali Linux de disposer d’une adresse fixe 10.10.10.100/24 sur
           son interface eth0, utilisée pour initier les attaques vers la machine pivot Windows Server 2008.
@@ -684,9 +681,25 @@ netmask 255.255.255.0
           Figure 23 – Chargement de l’image ISO et lancement de l’installation
         </figcaption>
         <!---->
-        <p>Une fois l’installation terminée, nous retirons l’ISO et redémarrons la machine virtuelle. 
-          pfSense affiche alors son menu principal en console.
-        </p>
+        <p>Une fois l’installation terminée, nous retirons l’ISO puis avant de  redémarrer la machine virtuelle,
+          nous paramétrons son réseau WAN et LAN.<br> 
+          La machine pfSense joue le rôle de routeur et pare-feu, avec une double connectivité:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
+          <li><strong>Adaptateur 1 (WAN)</strong>: Réseau NAT (NatNetwork), permettant l’accès à Internet.</li>
+          <li><strong>Adaptateur 2 (LAN)</strong>: Réseau privé hôte (VirtualBox Host-Only Ethernet Adapter), 
+            pour la communication avec Kali Linux et Windows Server 2008 (IP dans le sous-réseau 10.10.10.0/24).</li>
+        </ul>  
+        <!--CE4-->
+        <img src="/monvirtuallab-site/assets/CEpfsense1-u0oxETeA.png" width="500" />
+        <figcaption>
+          Figure 24 – WAN pfSense — NAT Network
+        </figcaption>
+
+        <img src="/monvirtuallab-site/assets/CEpfsense2--Rtf9Ojo.png" width="500" />
+        <figcaption>
+          Figure 24 – LAN pfSense — Host-Only
+        </figcaption>
+        <p>On redémarre la machine virtuelle et l'interface de commande de <strong>pfSense</strong> apparaît.</p>
         <!--CE4-->
         <img src="/monvirtuallab-site/assets/CE4-xOFLB00e.png" width="500" />
         <figcaption>
@@ -2614,16 +2627,15 @@ c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
       <div class="section content-section" id="synth">
         <h2>📋 Synthèse</h2>
         <!---->
-        <p>
+        <pre>
           Après avoir compromis la machine Windows, le hacker a obtenu des informations déterminantes 
-          grâce à un enregistreur de frappes. Une salarié de l'entreprise précisait dans un document texte
-          la localisation d'un document hautement confidentiel. 
-        </p>
-        <p>
+          grâce à un enregistreur de frappes. Dans l'échange capturé, un salarié de l'entreprise précisait dans un document texte
+          la localisation d'un document hautement confidentiel sur une <q> machine Linux non reliée au réseau </q>.<br>
+        
           Le pirate a alors entrepris de scanner le réseau interne à l’aide de l’outil arp-scanner, afin d’identifier
           les hôtes actifs. L’objectif était d’envoyer des requêtes ARP et d’obtenir, pour chaque machine détectée,
           son adresse IP et son adresse MAC. Ce scan a confirmé l'existence d'une machine sur un réseau différent.       </p>
-        </p>
+        </pre>
         <p>
           Pour accéder à cette machine le hacker a procédé comme suit:
           <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
@@ -2635,14 +2647,13 @@ c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
             transite par la machine compromise, puis soit redirigé vers le réseau interne.</li>
           </ul>
         </p>
-        <p>
+        <pre>
           La première attaque brute force sur le serveur FTP de l’ordinateur caché échoua après près de 48
           heures d’exécution, jugée inefficace. Le hacker opta alors pour une seconde attaque par brute force
           ciblant cette fois un serveur Tomcat. Cependant, l’opération fut interrompue avant son démarrage,
           conduisant à vérifier l’accessibilité du port concerné. Un scan nmap révéla que le port 8180 avait le
           statut filtered, laissant supposer un filtrage ou un blocage par pare-feu.    
-        </p>
-        <p>
+        
           L’attaquant tenta alors une nouvelle approche : l’extraction des hachages de mots de passe de la
           machine Windows Server 2008 R2 Standard compromise, via le module smart_hashdump. L’objectif était
           d’appliquer la technique « pass the hash ». Cette méthode exploite une faiblesse 18 du protocole NTLM,
@@ -2650,16 +2661,15 @@ c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
           Le hacker utilisa le module windows/smb/psexec pour mettre en œuvre cette technique, mais
           échoua une nouvelle fois. Il se tourna alors vers un déchiffrement des hachages à l’aide de John
           the Ripper.
-        </p>
-        <p>
+
           Pour ce faire, il récupéra d’abord, via la commande creds, les identifiants trouvés et
           associés aux machines ciblées. L’analyse montra que trois entrées correspondaient à la machine cachée
           (192.168.100.3). Après avoir cassé les mots de passe, il constata que l’utilisateur vagrant était présent
           à la fois sur Windows 2008 (10.10.10.2) et sur la machine interne.
-        </p>
-        <p>
+
           Ce compte fut utilisé pour se connecter au bureau à distance à Windows 2008 ainsi qu’au serveur
           FTP interne. Depuis sa session Meterpreter, le pirate procéda comme suit:
+        </pre>
           <ul style="margin-left: 1.5rem; margin-top: 0.5rem">
             <li><strong>Activation du Bureau à distance</strong>: via le module enable_rdp.</li>
             <li><strong>Connexion graphique à l'ordinateur Windows 2008</strong> en utilisant rdesktop 
@@ -2671,10 +2681,9 @@ c:\wamp\bin\mysql5.5.20\data>cd c:\Users\vagrant
               et télécharger le fichier sur la machine d’attaque.</li>
             <li><strong>Vérification de la lisibilité du fichier cible avec cat directement dans la session Meterpreter</strong></li>
           </ul>
-        </p>
         <h2>🎯 Conclusion</h2>
         <p>
-            Cette simulation met en évidence la complexité de la mise en place d’un laboratoire de pentesting
+          Cette simulation met en évidence la complexité de la mise en place d’un laboratoire de pentesting
           et les difficultés rencontrées dans ce type d’opération. Dans un contexte réel, un pirate n’exécuterait
           probablement pas ces actions manuellement: par souci de rapidité et pour réduire les risques de
           détection, il privilégierait l’emploi de scripts automatisés, adaptés aux résultats obtenus au fil des
