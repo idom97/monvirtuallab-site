@@ -9,4 +9,4 @@ Ce projet a été réalisé dans le cadre de la Licence 3 Informatique (IED), so
 ## 🌐 Accès au projet
 
 Accéder à la démonstration en ligne :
-[Voir mon projet](https://idom97.github.io/monvirtuallab-site/)
+[Mon virtual lab](https://idom97.github.io/monvirtuallab-site/)
